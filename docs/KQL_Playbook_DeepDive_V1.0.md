@@ -1,6 +1,6 @@
 <h1 align="center">🛡️ Defender KQL Playbook</h1>
 
-# 🔍 KQL Playbook Deep Dive Version 1.0
+### 🔍 KQL Playbook Deep Dive Version 1.0
 
 ## 📌 Table of Contents
 <a name="-table-of-contents"></a>
