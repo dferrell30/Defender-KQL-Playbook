@@ -38,6 +38,12 @@ For full disclaimer and usage terms, please refer to the main repository README:
 
 ➡️ [View Disclaimer](../README.md#️-disclaimer)
 
+## ⚠️ License
+
+For full License and usage terms, please refer to the main repository README:
+
+➡️ [View Disclaimer](../LICENSE.md)
+
 ---
 
 ## 📘 Playbook Summary
