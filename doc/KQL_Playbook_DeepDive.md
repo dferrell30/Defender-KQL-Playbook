@@ -161,7 +161,21 @@ Detects macro/phishing execution chains.
 ### Detection
 
 🔥 Very High
+---
 
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- isolate device immediately
+- investigate email source and attachments
+- block sender/domain if malicious
+- reset user credentials
+- review lateral movement activity
+
+**Medium Confidence**
+- validate document source
+- check for known macros or business use
+- monitor device behavior
 ---
 
 # 🔥 Section Summary
