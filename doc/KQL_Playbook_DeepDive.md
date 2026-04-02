@@ -138,6 +138,13 @@ Detects common attacker scripting patterns.
 
 Encoded commands, downloads.
 ---
+### 🔍 What to Look For
+
+- encoded or obfuscated commands (`-enc`, base64)
+- download activity (`DownloadString`, `Invoke-WebRequest`)
+- unusual users running PowerShell
+- execution from temp or user directories
+---
 
 ### 🛠️ Recommended Remediation
 
@@ -165,6 +172,14 @@ DeviceProcessEvents
 ### What It Does
 
 Detects macro/phishing execution chains.
+
+### 🔍 What to Look For
+
+- Word, Excel, or Outlook spawning PowerShell or cmd
+- script execution immediately after document open
+- unusual command-line arguments
+- activity tied to recent email delivery
+---
 
 ### Detection
 
@@ -373,6 +388,13 @@ Identifies repeated failed logon attempts.
 
 * brute force detection
 * password spray
+  
+### 🔍 What to Look For
+
+- repeated failed attempts for a single account
+- multiple accounts failing on one device
+- rapid login attempts (spray behavior)
+- failures followed by successful login
 
 ### Normal vs Suspicious
 
@@ -453,6 +475,15 @@ Identifies outbound connections from scripting or command-line tools.
 
 * command and control detection
 * suspicious downloads
+---
+
+### 🔍 What to Look For
+
+- scripting tools connecting to public IPs
+- rare or unknown external destinations
+- unusual ports or repeated connections
+- command-line activity tied to network calls
+---
 
 ### Normal vs Suspicious
 
@@ -505,6 +536,13 @@ Finds IPs rarely seen across the environment.
 
 * anomaly hunting
 * threat intel pivot
+
+### 🔍 What to Look For
+
+- IPs seen on very few devices
+- uncommon external infrastructure
+- connections tied to scripting tools
+- lack of known business purpose
 
 ### Suspicious
 
@@ -607,6 +645,13 @@ Identifies changes to registry locations commonly used for persistence.
 * post-compromise investigation
 * persistence hunting
 
+### 🔍 What to Look For
+
+- entries in Run / RunOnce keys
+- executables in temp or user paths
+- unknown or unsigned binaries
+- persistence tied to recent activity
+
 ### Normal vs Suspicious
 
 * Normal: known applications
@@ -646,6 +691,14 @@ Detects creation of scheduled tasks used for persistence or delayed execution.
 
 * persistence detection
 * attacker automation
+---
+
+### 🔍 What to Look For
+
+- suspicious or generic task names
+- execution from temp or user directories
+- PowerShell or script-based commands
+- tasks created by unexpected users
 
 ### Normal vs Suspicious
 
@@ -886,6 +939,38 @@ Identifies uncommon port usage patterns.
 
 ⚠️ Needs tuning
 
+### 🔍 What to Look For
+
+- uncommon or rarely used ports (non-80/443/53)
+- scripting tools using unusual ports (PowerShell, cmd, mshta)
+- outbound connections on high or non-standard ports
+- repeated connections to the same port across devices
+
+### 🧠 Note
+
+Unusual port usage often becomes more meaningful when correlated with:
+- scripting tool execution
+- rare external IP connections
+- recent file downloads or payload execution
+---
+
+### 🛠️ Recommended Remediation
+
+**High Confidence (suspicious network activity confirmed)**
+- isolate the device
+- block the remote IP and/or port
+- investigate the initiating process and command line
+- review related network activity across the environment
+- run antivirus scan and check for persistence mechanisms
+
+**Medium Confidence (unusual but not confirmed malicious)**
+- validate port usage against expected application behavior
+- check if port is used by known software or services
+- monitor for repeated or expanding activity
+
+**Low Confidence (likely benign)**
+- document known application behavior
+- add to allowlist for future filtering
 ---
 
 # 🔥 Section Summary
@@ -932,7 +1017,7 @@ Finds files created in common attacker staging locations.
 
 * malware staging detection
 * post-execution investigation
-
+  
 ### Normal vs Suspicious
 
 * Normal: installers, temp files
@@ -948,6 +1033,14 @@ Finds files created in common attacker staging locations.
 
 ✅ Medium–High (needs filtering)
 ---
+
+### 🔍 What to Look For
+
+- executables or scripts in temp/public folders
+- files created by scripting tools
+- unusual or random file names
+- activity tied to recent downloads
+  
 ### 🛠️ Recommended Remediation
 
 **High Confidence**
@@ -989,6 +1082,13 @@ Detects file compression, often used before data exfiltration.
 ### Detection Potential
 
 ⚠️ Context dependent
+
+### 🔍 What to Look For
+
+- large or repeated archive creation
+- compression in unusual directories
+- activity by non-admin users
+- behavior preceding external connections
 ---
 
 ### 🛠️ Recommended Remediation
@@ -1022,6 +1122,12 @@ Detects abuse of certutil to download or decode payloads.
 
 🔥 High
 ---
+### 🔍 What to Look For
+
+- use of `-urlcache` or `-decode`
+- external downloads via certutil
+- encoded or decoded payloads
+- execution followed by file creation
 
 ### 🛠️ Recommended Remediation
 
@@ -1064,6 +1170,12 @@ Finds processes rarely seen across the environment.
 
 ⚠️ Hunting only
 ---
+### 🔍 What to Look For
+
+- processes seen on very few devices
+- unknown or unsigned executables
+- unexpected binaries on user systems
+- activity tied to suspicious execution chains
 
 ### 🛠️ Recommended Remediation
 
@@ -1098,6 +1210,12 @@ Identifies devices with unusually low activity.
 ### Detection Potential
 
 ❌ No
+
+### 🔍 What to Look For
+
+- devices with little or no telemetry
+- inconsistent reporting patterns
+- active systems appearing inactive
 
 ### 🛠️ Recommended Remediation
 
