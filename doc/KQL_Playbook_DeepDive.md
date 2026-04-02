@@ -905,7 +905,19 @@ Finds files created in common attacker staging locations.
 ### Detection Potential
 
 ✅ Medium–High (needs filtering)
+---
+### 🛠️ Recommended Remediation
 
+**High Confidence**
+- isolate device
+- delete malicious file
+- run full antivirus scan
+- review file origin and execution chain
+
+**Medium Confidence**
+- validate file legitimacy
+- check file hash reputation
+- monitor execution behavior
 ---
 
 ## Archive / Compression Activity
@@ -935,7 +947,19 @@ Detects file compression, often used before data exfiltration.
 ### Detection Potential
 
 ⚠️ Context dependent
+---
 
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- investigate files being archived
+- check for sensitive data exposure
+- review user intent and behavior
+- restrict data access if needed
+
+**Medium Confidence**
+- validate business use case
+- monitor for large or repeated archive activity
 ---
 
 ## Certutil Abuse (Download / Decode)
@@ -955,7 +979,19 @@ Detects abuse of certutil to download or decode payloads.
 ### Detection Potential
 
 🔥 High
+---
 
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- isolate device immediately
+- block associated URL/IP
+- investigate downloaded or decoded content
+- review for additional payload execution
+
+**Medium Confidence**
+- validate usage against known admin activity
+- monitor command usage patterns
 ---
 
 # 🧪 8. ANOMALY HUNTING
@@ -985,7 +1021,19 @@ Finds processes rarely seen across the environment.
 ### Detection Potential
 
 ⚠️ Hunting only
+---
 
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- isolate device
+- analyze process binary
+- check hash against threat intelligence
+- review execution context
+
+**Medium Confidence**
+- validate process against known software inventory
+- monitor for additional executions
 ---
 
 ## Unusual Low Activity Devices
@@ -1009,6 +1057,12 @@ Identifies devices with unusually low activity.
 
 ❌ No
 
+### 🛠️ Recommended Remediation
+
+- verify endpoint is active
+- confirm Defender sensor health
+- check connectivity and telemetry ingestion
+- re-onboard device if needed
 ---
 
 # 🔧 9. NOISE REDUCTION & ADVANCED FILTERING
@@ -1027,7 +1081,10 @@ Removes known expected activity.
 
 * reduces noise
 * improves detection quality
+---
 
+### 🛠️ Purpose
+These filters are used to reduce false positives and improve detection accuracy before creating alerts.
 ---
 
 ## Exclude Management Tools
@@ -1151,4 +1208,87 @@ Steps:
 > This is no longer just a set of queries.
 > This is a full operational detection framework.
 
+🛡️ Custom Detection Creation (Defender XDR)
+🎯 Goal
+
+Turn validated KQL queries into automated detections and alerts.
+
+🧭 Step-by-Step
+1. Open Advanced Hunting
+
+Go to:
+
+👉 https://security.microsoft.com
+
+Navigate:
+
+Hunting → Advanced Hunting
+2. Run Your Query
+paste your KQL query
+validate results
+confirm:
+low noise
+consistent behavior
+3. Create Detection Rule
+
+Click:
+
+👉 “Create detection rule”
+
+⚙️ Recommended Settings
+🔴 Severity
+Scenario	Severity
+Confirmed malicious (PowerShell, Office chain)	High
+Suspicious but needs context	Medium
+Validation / anomaly queries	Low or none
+⏱️ Frequency
+Use Case	Frequency
+Active threats	Every 5–15 minutes
+General monitoring	Hourly
+Baseline/anomaly	Daily
+📊 Lookback Period
+
+Recommended:
+
+24 hours for most detections
+shorter for high-risk queries
+👤 Entities (CRITICAL)
+
+Always map:
+
+Device
+Account
+
+Optional:
+
+IP address
+File hash
+
+👉 This enables:
+
+investigation graph
+automated response
+🤖 Automated Actions
+🔥 High Confidence Detections
+isolate device
+run antivirus scan
+collect investigation package
+⚠️ Medium Confidence
+trigger investigation
+alert SOC team
+monitor behavior
+🚨 Example: PowerShell Detection
+
+Use query:
+
+DeviceProcessEvents
+| where FileName =~ "powershell.exe"
+| where ProcessCommandLine has_any ("EncodedCommand","DownloadString","Invoke-WebRequest")
+| where AccountName !in~ ("admin","svc_account")
+
+Recommended:
+
+Severity: High
+Frequency: 15 minutes
+Action: isolate device
 
