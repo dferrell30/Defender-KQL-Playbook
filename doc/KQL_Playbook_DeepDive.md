@@ -1,5 +1,28 @@
 # 🔍 KQL Playbook Deep Dive
 
+## 🧠 How to Use This Playbook
+
+This playbook is designed for:
+
+- validating Defender telemetry  
+- identifying visibility gaps  
+- threat hunting  
+- detection engineering  
+
+Each query includes:
+- what it does  
+- when to use it  
+- what to look for  
+- recommended remediation  
+
+Start with onboarding validation, then move into hunting and detection.
+
+## 🔄 Investigation Flow
+
+Process → Network → Logon → Alerts → Identity → Email
+
+---
+
 ### Sections 1–3: Onboarding • Visibility • Threat Hunting
 
 ---
@@ -217,13 +240,6 @@ DeviceProcessEvents
 
 Detects macro/phishing execution chains.
 
-### 🔍 What to Look For
-
-- Word, Excel, or Outlook spawning PowerShell or cmd
-- script execution immediately after document open
-- unusual command-line arguments
-- activity tied to recent email delivery
-
 ---
 
 ### Detection
@@ -231,6 +247,13 @@ Detects macro/phishing execution chains.
 🔥 Very High
 
 ---
+
+### 🔍 What to Look For
+
+- Word, Excel, or Outlook spawning PowerShell or cmd
+- script execution immediately after document open
+- unusual command-line arguments
+- activity tied to recent email delivery
 
 ### 🛠️ Recommended Remediation
 
