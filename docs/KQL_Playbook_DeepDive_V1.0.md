@@ -30,9 +30,9 @@
 
 - [🧾 Closing Summary](#-closing-summary)
 
-- [⚠️ Disclaimer](#️-disclaimer)
-- [⚖️ Professional Disclaimer](#️-professional-disclaimer)
-- [📄 License](#-license)
+- [ ⚠️ Disclaimer](#️-disclaimer)
+- [ ⚖️ Professional Disclaimer](#️-professional-disclaimer)
+- [ 📄 License](#-license)
 
 ---
 
