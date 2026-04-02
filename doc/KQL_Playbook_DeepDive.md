@@ -404,6 +404,7 @@ DeviceNetworkEvents
 | project Timestamp, DeviceName, RemoteIP, RemotePort, InitiatingProcessFileName
 | order by Timestamp desc
 ```
+![Devices Reporting](../images/ExternalConnectionsfromScriptingTools.png)
 
 ### Table Used
 
