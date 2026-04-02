@@ -128,6 +128,7 @@ DeviceProcessEvents
 | where FileName =~ "powershell.exe"
 | where ProcessCommandLine has_any ("EncodedCommand","DownloadString","Invoke-WebRequest")
 ```
+![Devices Reporting](../images/Suspicioiuspowershell.png)
 
 ### What It Does
 
