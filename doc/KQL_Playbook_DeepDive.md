@@ -24,7 +24,7 @@
 
 ### 📸 Example Output
 
-![Devices Reporting](../images/onboarding-validation.png)
+![Devices Reporting](../images/DevicesReportingOutput.png)
 
 ```kusto
 DeviceInfo
