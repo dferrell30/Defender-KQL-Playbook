@@ -853,7 +853,18 @@ Identifies uncommon port usage patterns.
 * Network → how attackers communicate
 
 These layers start connecting behavior across the environment.
+---
 
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- block suspicious port or destination
+- isolate device if malicious activity confirmed
+- investigate process using the port
+
+**Medium Confidence**
+- validate port usage against expected application behavior
+- monitor for recurrence
 ---
 
 # 📂 7. FILE ACTIVITY HUNTING
