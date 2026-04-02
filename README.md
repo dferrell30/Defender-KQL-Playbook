@@ -52,9 +52,9 @@ This project is an independent work developed in a personal capacity.
 
 The views, opinions, code, and content expressed in this repository are solely my own and do not reflect the views, policies, or positions of any current or future employer, client, or affiliated organization.
 
-No employer, past, present, or future, has reviewed, approved, endorsed, or is in any way associated with this work.
+No employer, past, present, or future, has reviewed, approved, endorsed, or is in any way associated with these works.
 
 This project was developed outside the scope of any employment and without the use of proprietary, confidential, or restricted resources.
 
-All code in this repository is provided under the terms of the included MIT License.
+All code/language in this repository is provided under the terms of the included MIT License.
 
