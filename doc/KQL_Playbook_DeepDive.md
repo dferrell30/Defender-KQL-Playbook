@@ -791,5 +791,290 @@ Identifies uncommon port usage patterns.
 
 These layers start connecting behavior across the environment.
 
+---
+
+# 📂 7. FILE ACTIVITY HUNTING
+
+## Suspicious File Creation (Temp / Public Paths)
+
+```kusto id="p9k3lz"
+DeviceFileEvents
+| where FolderPath has_any ("\\AppData\\Local\\Temp\\","\\Users\\Public\\","\\Windows\\Temp\\")
+| project Timestamp, DeviceName, FileName, FolderPath, InitiatingProcessFileName
+| order by Timestamp desc
+```
+
+### Table Used
+
+DeviceFileEvents → File activity on endpoints
+
+### What It Does
+
+Finds files created in common attacker staging locations.
+
+### When to Use
+
+* malware staging detection
+* post-execution investigation
+
+### Normal vs Suspicious
+
+* Normal: installers, temp files
+* Suspicious: executables/scripts in temp directories
+
+### Pivot
+
+* process execution
+* network activity
+* file hash lookup
+
+### Detection Potential
+
+✅ Medium–High (needs filtering)
+
+---
+
+## Archive / Compression Activity
+
+```kusto id="1d4y7p"
+DeviceProcessEvents
+| where FileName in~ ("7z.exe","winrar.exe","rar.exe","powershell.exe")
+| where ProcessCommandLine has_any (".zip",".rar",".7z","Compress-Archive")
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine
+| order by Timestamp desc
+```
+
+### What It Does
+
+Detects file compression, often used before data exfiltration.
+
+### When to Use
+
+* insider risk
+* data staging
+
+### Suspicious
+
+* large archive operations
+* unusual directories
+
+### Detection Potential
+
+⚠️ Context dependent
+
+---
+
+## Certutil Abuse (Download / Decode)
+
+```kusto id="yq0xtp"
+DeviceProcessEvents
+| where FileName =~ "certutil.exe"
+| where ProcessCommandLine has_any ("-urlcache","-decode","http")
+| project Timestamp, DeviceName, AccountName, ProcessCommandLine
+| order by Timestamp desc
+```
+
+### What It Does
+
+Detects abuse of certutil to download or decode payloads.
+
+### Detection Potential
+
+🔥 High
+
+---
+
+# 🧪 8. ANOMALY HUNTING
+
+## Rare Processes
+
+```kusto id="d8ahvc"
+DeviceProcessEvents
+| summarize SeenCount = count() by FileName
+| where SeenCount < 5
+| order by SeenCount asc
+```
+
+### What It Does
+
+Finds processes rarely seen across the environment.
+
+### When to Use
+
+* anomaly detection
+* unknown binaries
+
+### Suspicious
+
+* uncommon executables
+
+### Detection Potential
+
+⚠️ Hunting only
+
+---
+
+## Unusual Low Activity Devices
+
+```kusto id="l2vntp"
+DeviceProcessEvents
+| summarize ProcessCount = count() by DeviceName
+| where ProcessCount < 10
+```
+
+### What It Does
+
+Identifies devices with unusually low activity.
+
+### Suspicious
+
+* devices not reporting properly
+* stealth activity
+
+### Detection Potential
+
+❌ No
+
+---
+
+# 🔧 9. NOISE REDUCTION & ADVANCED FILTERING
+
+## Exclude Known Accounts
+
+```kusto id="3q5v8n"
+| where AccountName !in~ ("admin","svc_account","automation_user")
+```
+
+### What It Does
+
+Removes known expected activity.
+
+### Impact
+
+* reduces noise
+* improves detection quality
+
+---
+
+## Exclude Management Tools
+
+```kusto id="6a2cnb"
+| where InitiatingProcessCommandLine !has_any ("SCCM","Intune","CompanyPortal")
+```
+
+### What It Does
+
+Filters enterprise management activity.
+
+### Impact
+
+🔥 Critical before production detections
+
+---
+
+# ⚙️ 10. DETECTION TUNING & WORKFLOW
+
+## Before (Noisy Query)
+
+```kusto id="k0x91v"
+DeviceProcessEvents
+| where FileName =~ "powershell.exe"
+```
+
+---
+
+## After (Detection-Ready)
+
+```kusto id="9yzp0e"
+DeviceProcessEvents
+| where FileName =~ "powershell.exe"
+| where ProcessCommandLine has_any ("EncodedCommand","DownloadString","Invoke-WebRequest")
+| where AccountName !in~ ("admin","svc_account")
+| project Timestamp, DeviceId, DeviceName, ReportId, AccountName, ProcessCommandLine
+```
+
+---
+
+### What Changed
+
+* added behavioral filters
+* removed known noise
+* preserved key fields
+
+---
+
+## When a Query Becomes a Detection
+
+A query is ready when:
+
+* results are consistent
+* noise is minimized
+* behavior is clearly suspicious
+
+---
+
+## Investigation Workflow
+
+1. Validate device
+2. Review processes
+3. Check network
+4. Analyze logons
+5. Review alerts
+6. Add identity context
+7. Confirm threat
+
+---
+
+## Pivot Model
+
+**Process → Network → Logon → Alerts → Identity → Email**
+
+---
+
+## Creating a Detection Rule
+
+Steps:
+
+1. Go to **security.microsoft.com**
+2. Open **Advanced Hunting**
+3. Run query
+4. Validate results
+5. Click **Create detection rule**
+6. Configure:
+
+   * severity
+   * frequency
+   * entities
+
+---
+
+## Recommended Automated Actions
+
+### High Confidence
+
+* isolate device
+* run antivirus scan
+* collect investigation package
+
+### Medium Confidence
+
+* monitor
+* initiate investigation
+
+---
+
+# 🔥 Final Section Summary
+
+* File → staging & payloads
+* Anomaly → outliers
+* Filtering → signal clarity
+* Detection → operationalization
+
+---
+
+# 🧭 Final Insight
+
+> This is no longer just a set of queries.
+> This is a full operational detection framework.
 
 
