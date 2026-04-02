@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://img.icons8.com/fluency/96/shield-with-checkmark.png" width="120"/>
-</p>
-
 <h1 align="center">🛡️ Defender KQL Playbook</h1>
 
 # 🔍 KQL Playbook Deep Dive Version 1.0
