@@ -1551,3 +1551,383 @@ These are designed to help transition from:
 - to structured investigation and decision-making  
 
 ---
+
+---
+
+## 🔎 Investigation Workflow: Suspicious PowerShell Execution
+
+### Step 1 — Identify suspicious PowerShell activity
+
+Run a query targeting:
+
+- Encoded commands  
+- Download cradles  
+- Suspicious flags (`-enc`, `-nop`, `-w hidden`)  
+
+---
+
+### Step 2 — Pivot to process context
+
+Table:
+- DeviceProcessEvents  
+
+Validate:
+
+- InitiatingProcessFileName  
+- InitiatingProcessCommandLine  
+- AccountName  
+
+---
+
+### Step 3 — Validate parent process
+
+Look for:
+
+- winword.exe → powershell.exe  
+- excel.exe → powershell.exe  
+- browser → powershell  
+
+👉 These are high-risk parent-child relationships  
+
+---
+
+### Step 4 — Check network activity
+
+Pivot to:
+- DeviceNetworkEvents  
+
+Look for:
+
+- External connections  
+- Suspicious domains  
+- Download activity  
+
+---
+
+### Step 5 — Confirm or dismiss
+
+Confirm suspicious if:
+
+- Encoded or obfuscated commands  
+- Unusual parent process  
+- External download behavior  
+
+Otherwise:
+
+- Validate as admin or expected scripted activity  
+
+---
+
+## 🔎 Investigation Workflow: Defender Tampering / Defense Evasion
+
+### Step 1 — Identify Defender configuration changes
+
+Run queries looking for:
+
+- Set-MpPreference  
+- Add-MpPreference  
+- Registry changes affecting Defender  
+
+---
+
+### Step 2 — Pivot to registry activity
+
+Table:
+- DeviceRegistryEvents  
+
+Look for:
+
+- Disabled protections  
+- Exclusions added  
+- Real-time monitoring changes  
+
+---
+
+### Step 3 — Validate initiating process
+
+Table:
+- DeviceProcessEvents  
+
+Check:
+
+- CommandLine arguments  
+- Script or binary used  
+- Execution context  
+
+---
+
+### Step 4 — Check user context
+
+Validate:
+
+- AccountName  
+- Privilege level  
+- Expected administrative activity  
+
+---
+
+### Step 5 — Confirm or dismiss
+
+Suspicious if:
+
+- Unexpected user  
+- Hidden or scripted execution  
+- Multiple exclusions added  
+
+Otherwise:
+
+- Validate against known admin actions  
+
+---
+
+## 🔎 Investigation Workflow: Credential Access (LSASS / Dumping)
+
+### Step 1 — Identify LSASS access
+
+Run queries for:
+
+- lsass.exe access  
+- Known dumping patterns  
+- Suspicious tools  
+
+---
+
+### Step 2 — Pivot to process details
+
+Table:
+- DeviceProcessEvents  
+
+Check:
+
+- ProcessName  
+- CommandLine  
+- InitiatingProcess  
+
+---
+
+### Step 3 — Validate binary behavior
+
+Look for:
+
+- Unsigned executables  
+- Unusual file paths  
+- Living-off-the-land binaries  
+
+---
+
+### Step 4 — Check related activity
+
+Pivot to:
+
+- DeviceFileEvents  
+- DeviceNetworkEvents  
+
+Look for:
+
+- Dump file creation  
+- External connections  
+
+---
+
+### Step 5 — Confirm or dismiss
+
+Suspicious if:
+
+- LSASS accessed by non-system process  
+- Dumping tools observed  
+- Correlated suspicious activity  
+
+Otherwise:
+
+- Validate expected system or security tooling behavior  
+
+---
+
+## 🔎 Investigation Workflow: Suspicious Process Chain
+
+### Step 1 — Identify abnormal execution
+
+Look for:
+
+- Unexpected parent-child relationships  
+- Script interpreters launched by documents  
+
+---
+
+### Step 2 — Build process tree
+
+Table:
+- DeviceProcessEvents  
+
+Trace:
+
+- Parent process  
+- Child processes  
+- Execution sequence  
+
+---
+
+### Step 3 — Validate command lines
+
+Check for:
+
+- Encoded commands  
+- Obfuscation  
+- Suspicious arguments  
+
+---
+
+### Step 4 — Correlate additional activity
+
+Pivot to:
+
+- DeviceNetworkEvents  
+- DeviceFileEvents  
+
+---
+
+### Step 5 — Confirm or dismiss
+
+Suspicious if:
+
+- Document → script → network chain  
+- Multi-stage execution  
+- Obfuscation present  
+
+Otherwise:
+
+- Expected application behavior  
+
+---
+
+## 🔎 Investigation Workflow: Suspicious Network Activity
+
+### Step 1 — Identify suspicious connections
+
+Look for:
+
+- External IP addresses  
+- Rare or newly observed domains  
+- High-volume outbound traffic  
+
+---
+
+### Step 2 — Pivot to process source
+
+Table:
+- DeviceProcessEvents  
+
+Identify:
+
+- Responsible process  
+- CommandLine  
+- User context  
+
+---
+
+### Step 3 — Validate destination
+
+Check:
+
+- Domain/IP reputation  
+- Known indicators  
+- Geographic anomalies  
+
+---
+
+### Step 4 — Correlate system activity
+
+Pivot to:
+
+- DeviceFileEvents  
+- DeviceProcessEvents  
+
+---
+
+### Step 5 — Confirm or dismiss
+
+Suspicious if:
+
+- Unknown process initiating connections  
+- Repeated outbound traffic  
+- Known malicious indicators  
+
+Otherwise:
+
+- Expected application/network behavior  
+
+---
+
+## 🔎 Investigation Workflow: Device Triage (Post Alert)
+
+### Step 1 — Start from alert context
+
+Gather:
+
+- DeviceName  
+- AccountName  
+- Timestamp  
+- Alert details  
+
+---
+
+### Step 2 — Review process activity
+
+Table:
+- DeviceProcessEvents  
+
+Look for:
+
+- Recent executions  
+- Suspicious binaries  
+- Script usage  
+
+---
+
+### Step 3 — Review network activity
+
+Table:
+- DeviceNetworkEvents  
+
+Check:
+
+- External connections  
+- Suspicious domains  
+
+---
+
+### Step 4 — Review file activity
+
+Table:
+- DeviceFileEvents  
+
+Look for:
+
+- Dropped files  
+- Unknown executables  
+
+---
+
+### Step 5 — Determine scope
+
+Identify:
+
+- Single event vs broader compromise  
+- Lateral movement indicators  
+- Persistence mechanisms  
+
+---
+
+### Step 6 — Confirm or escalate
+
+Escalate if:
+
+- Multiple correlated suspicious signals  
+- Known attack patterns  
+- Cross-device activity  
+
+Otherwise:
+
+- Close as benign or expected behavior  
+
+---
