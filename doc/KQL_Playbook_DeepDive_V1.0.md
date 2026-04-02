@@ -95,6 +95,8 @@ Each query includes:
 
 Start with onboarding validation, then move into hunting and detection.
 
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ## 🔄 Investigation Flow
 
 Process → Network → Logon → Alerts → Identity → Email
@@ -116,6 +118,8 @@ It is designed to help you understand:
 - which tables to use  
 - how to write and interpret queries  
 - key terminology used throughout this playbook
+
+🔝 [Back to Table of Contents](#-table-of-contents)
   
 ---
 
@@ -135,6 +139,8 @@ Understanding how these tables relate allows you to:
 - correlate activity across multiple data sources  
 - reconstruct attack chains  
 - pivot between processes, network, and file activity
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -213,6 +219,9 @@ Useful for:
 DeviceProcessEvents
 | where ProcessCommandLine contains "powershell"
 ```
+
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 # 🔍 1. ONBOARDING VALIDATION
@@ -269,6 +278,9 @@ Finds the most recent reporting timestamp for each device.
 - re-onboard device if necessary
 - remove decommissioned devices from inventory
   
+
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 ## Stale Devices
@@ -305,7 +317,9 @@ Active devices going silent.
 - check Defender sensor health
 - confirm network access to Microsoft services
 - re-onboard device if necessary
-  
+
+ 🔝 [Back to Table of Contents](#-table-of-contents)
+ 
 ---
 
 # 📊 2. DISCOVERY & VISIBILITY
