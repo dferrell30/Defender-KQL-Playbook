@@ -38,11 +38,15 @@ For full disclaimer and usage terms, please refer to the main repository README:
 
 ➡️ [View Disclaimer](../README.md#️-disclaimer)
 
-## ⚠️ License
+---
 
-For full License and usage terms, please refer to the main repository README:
+## 📄 License
 
-➡️ [View Disclaimer](../LICENSE.md)
+This project is licensed under the MIT License.
+
+For full license details, please refer to:
+
+➡️ [View License](../LICENSE)
 
 ---
 
