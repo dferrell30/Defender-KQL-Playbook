@@ -1540,3 +1540,14 @@ Each query should be:
 
 > KQL is not just for hunting — it is for validating, Stay Safe Defenders!
 
+---
+
+## 🔎 Investigation Workflows
+
+The following workflows provide step-by-step guidance for investigating common Defender scenarios using KQL.
+
+These are designed to help transition from:
+- raw query execution  
+- to structured investigation and decision-making  
+
+---
