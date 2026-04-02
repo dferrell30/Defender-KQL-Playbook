@@ -129,7 +129,21 @@ Detects common attacker scripting patterns.
 ### Suspicious
 
 Encoded commands, downloads.
+---
 
+### 🛠️ Recommended Remediation
+
+**High Confidence (malicious behavior confirmed)**
+- isolate the device
+- initiate full antivirus scan
+- collect investigation package
+- review all recent PowerShell activity on the device
+- reset credentials for affected account
+
+**Medium Confidence (needs validation)**
+- review command line for legitimacy
+- validate user activity
+- monitor for repeated behavior
 ---
 
 ## Office → Script Execution
