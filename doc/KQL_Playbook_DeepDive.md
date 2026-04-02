@@ -144,6 +144,7 @@ Encoded commands, downloads.
 - download activity (`DownloadString`, `Invoke-WebRequest`)
 - unusual users running PowerShell
 - execution from temp or user directories
+
 ---
 
 ### 🛠️ Recommended Remediation
@@ -159,6 +160,7 @@ Encoded commands, downloads.
 - review command line for legitimacy
 - validate user activity
 - monitor for repeated behavior
+
 ---
 
 ## Office → Script Execution
@@ -179,11 +181,13 @@ Detects macro/phishing execution chains.
 - script execution immediately after document open
 - unusual command-line arguments
 - activity tied to recent email delivery
+
 ---
 
 ### Detection
 
 🔥 Very High
+
 ---
 
 ### 🛠️ Recommended Remediation
@@ -199,6 +203,7 @@ Detects macro/phishing execution chains.
 - validate document source
 - check for known macros or business use
 - monitor device behavior
+
 ---
 
 # 🔥 Section Summary
@@ -206,6 +211,7 @@ Detects macro/phishing execution chains.
 * onboarding = validation
 * visibility = confirmation
 * hunting = detection
+
 ---
 
 # 🔐 4. PERSISTENCE HUNTING
@@ -323,6 +329,7 @@ Always correlate task creation with process and network activity.
 **Low Confidence (likely benign)**
 - document known task
 - add to allowlist for future filtering
+
 ---
 
 ## Service Creation (Persistence / Privilege Abuse)
@@ -475,14 +482,7 @@ Identifies outbound connections from scripting or command-line tools.
 
 * command and control detection
 * suspicious downloads
----
 
-### 🔍 What to Look For
-
-- scripting tools connecting to public IPs
-- rare or unknown external destinations
-- unusual ports or repeated connections
-- command-line activity tied to network calls
 ---
 
 ### Normal vs Suspicious
@@ -498,6 +498,15 @@ Identifies outbound connections from scripting or command-line tools.
 ### Detection Potential
 
 🔥 High
+
+---
+
+### 🔍 What to Look For
+
+- scripting tools connecting to public IPs
+- rare or unknown external destinations
+- unusual ports or repeated connections
+- command-line activity tied to network calls
 
 ### 🛠️ Recommended Remediation
 
@@ -537,13 +546,6 @@ Finds IPs rarely seen across the environment.
 * anomaly hunting
 * threat intel pivot
 
-### 🔍 What to Look For
-
-- IPs seen on very few devices
-- uncommon external infrastructure
-- connections tied to scripting tools
-- lack of known business purpose
-
 ### Suspicious
 
 * uncommon external infrastructure
@@ -551,6 +553,15 @@ Finds IPs rarely seen across the environment.
 ### Detection Potential
 
 ⚠️ Hunting query
+
+---
+
+### 🔍 What to Look For
+
+- IPs seen on very few devices
+- uncommon external infrastructure
+- connections tied to scripting tools
+- lack of known business purpose
 
 ### 🛠️ Recommended Remediation
 
@@ -563,6 +574,11 @@ Finds IPs rarely seen across the environment.
 **Medium Confidence**
 - validate IP against threat intelligence
 - monitor for repeated communication
+
+**Low Confidence**
+- document known external services
+- allowlist if legitimate
+
 ---
 
 ## Unusual Public Port Usage
@@ -605,7 +621,15 @@ Identifies uncommon port usage patterns.
 * Network → how attackers communicate
 
 These layers start connecting behavior across the environment.
+
 ---
+
+### 🔍 What to Look For
+- uncommon or non-standard ports
+- scripting tools using unusual ports
+- repeated connections on rare ports
+- outbound traffic not aligned with normal application behavior
+
 ### 🛠️ Recommended Remediation
 
 **High Confidence**
@@ -645,13 +669,6 @@ Identifies changes to registry locations commonly used for persistence.
 * post-compromise investigation
 * persistence hunting
 
-### 🔍 What to Look For
-
-- entries in Run / RunOnce keys
-- executables in temp or user paths
-- unknown or unsigned binaries
-- persistence tied to recent activity
-
 ### Normal vs Suspicious
 
 * Normal: known applications
@@ -666,6 +683,15 @@ Identifies changes to registry locations commonly used for persistence.
 ### Detection Potential
 
 🔥 High (after filtering known apps)
+
+---
+
+### 🔍 What to Look For
+
+- entries in Run / RunOnce keys
+- executables in temp or user paths
+- unknown or unsigned binaries
+- persistence tied to recent activity
 
 ---
 
@@ -691,14 +717,8 @@ Detects creation of scheduled tasks used for persistence or delayed execution.
 
 * persistence detection
 * attacker automation
+
 ---
-
-### 🔍 What to Look For
-
-- suspicious or generic task names
-- execution from temp or user directories
-- PowerShell or script-based commands
-- tasks created by unexpected users
 
 ### Normal vs Suspicious
 
@@ -714,6 +734,15 @@ Detects creation of scheduled tasks used for persistence or delayed execution.
 ### Detection Potential
 
 🔥 High
+
+---
+
+### 🔍 What to Look For
+
+- suspicious or generic task names
+- execution from temp or user directories
+- PowerShell or script-based commands
+- tasks created by unexpected users
 
 ---
 
@@ -874,6 +903,15 @@ Identifies outbound connections from scripting or command-line tools.
 
 🔥 High
 
+### 🔍 What to Look For
+
+- scripting tools connecting to public IPs
+- PowerShell, cmd, or mshta initiating outbound traffic
+- rare or unknown external destinations
+- unusual command-line activity tied to connections
+
+### 🛠️ Recommended Remediation
+
 ---
 
 ## Rare External IPs
@@ -905,6 +943,9 @@ Finds IPs rarely seen across the environment.
 ### Detection Potential
 
 ⚠️ Hunting query
+
+
+### 🛠️ Recommended Remediatio
 
 ---
 
@@ -952,6 +993,7 @@ Unusual port usage often becomes more meaningful when correlated with:
 - scripting tool execution
 - rare external IP connections
 - recent file downloads or payload execution
+
 ---
 
 ### 🛠️ Recommended Remediation
@@ -971,6 +1013,7 @@ Unusual port usage often becomes more meaningful when correlated with:
 **Low Confidence (likely benign)**
 - document known application behavior
 - add to allowlist for future filtering
+
 ---
 
 # 🔥 Section Summary
@@ -980,6 +1023,7 @@ Unusual port usage often becomes more meaningful when correlated with:
 * Network → how attackers communicate
 
 These layers start connecting behavior across the environment.
+
 ---
 
 ### 🛠️ Recommended Remediation
@@ -992,6 +1036,7 @@ These layers start connecting behavior across the environment.
 **Medium Confidence**
 - validate port usage against expected application behavior
 - monitor for recurrence
+
 ---
 
 # 📂 7. FILE ACTIVITY HUNTING
@@ -1032,6 +1077,7 @@ Finds files created in common attacker staging locations.
 ### Detection Potential
 
 ✅ Medium–High (needs filtering)
+
 ---
 
 ### 🔍 What to Look For
@@ -1053,6 +1099,7 @@ Finds files created in common attacker staging locations.
 - validate file legitimacy
 - check file hash reputation
 - monitor execution behavior
+
 ---
 
 ## Archive / Compression Activity
@@ -1089,7 +1136,6 @@ Detects file compression, often used before data exfiltration.
 - compression in unusual directories
 - activity by non-admin users
 - behavior preceding external connections
----
 
 ### 🛠️ Recommended Remediation
 
@@ -1102,6 +1148,7 @@ Detects file compression, often used before data exfiltration.
 **Medium Confidence**
 - validate business use case
 - monitor for large or repeated archive activity
+
 ---
 
 ## Certutil Abuse (Download / Decode)
@@ -1121,7 +1168,9 @@ Detects abuse of certutil to download or decode payloads.
 ### Detection Potential
 
 🔥 High
+
 ---
+
 ### 🔍 What to Look For
 
 - use of `-urlcache` or `-decode`
@@ -1140,6 +1189,7 @@ Detects abuse of certutil to download or decode payloads.
 **Medium Confidence**
 - validate usage against known admin activity
 - monitor command usage patterns
+
 ---
 
 # 🧪 8. ANOMALY HUNTING
@@ -1169,7 +1219,9 @@ Finds processes rarely seen across the environment.
 ### Detection Potential
 
 ⚠️ Hunting only
+
 ---
+
 ### 🔍 What to Look For
 
 - processes seen on very few devices
@@ -1188,6 +1240,7 @@ Finds processes rarely seen across the environment.
 **Medium Confidence**
 - validate process against known software inventory
 - monitor for additional executions
+
 ---
 
 ## Unusual Low Activity Devices
@@ -1223,6 +1276,7 @@ Identifies devices with unusually low activity.
 - confirm Defender sensor health
 - check connectivity and telemetry ingestion
 - re-onboard device if needed
+
 ---
 
 # 🔧 9. NOISE REDUCTION & ADVANCED FILTERING
@@ -1241,10 +1295,12 @@ Removes known expected activity.
 
 * reduces noise
 * improves detection quality
+
 ---
 
 ### 🛠️ Purpose
 These filters are used to reduce false positives and improve detection accuracy before creating alerts.
+
 ---
 
 ## Exclude Management Tools
