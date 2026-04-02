@@ -23,10 +23,6 @@ Process → Network → Logon → Alerts → Identity → Email
 
 ---
 
-### Sections 1–3: Onboarding • Visibility • Threat Hunting
-
----
-
 # 🧠 Core Principle
 
 > Dashboards show the story. KQL shows the evidence.
@@ -193,6 +189,7 @@ DeviceProcessEvents
 | where FileName =~ "powershell.exe"
 | where ProcessCommandLine has_any ("EncodedCommand","DownloadString","Invoke-WebRequest")
 ```
+
 ![Devices Reporting](../images/Suspicioiuspowershell.png)
 
 ### What It Does
@@ -202,7 +199,9 @@ Detects common attacker scripting patterns.
 ### Suspicious
 
 Encoded commands, downloads.
+
 ---
+
 ### 🔍 What to Look For
 
 - encoded or obfuscated commands (`-enc`, base64)
@@ -353,6 +352,7 @@ DeviceProcessEvents
 | project Timestamp, DeviceName, AccountName, ProcessCommandLine
 | order by Timestamp desc
 ```
+
 ![Devices Reporting](../images/ScheduleTaskCreation.png)
 
 ### Table Used
@@ -382,7 +382,7 @@ Check the following:
 - DeviceNetworkEvents → did it call out
 - DeviceLogonEvents → who created it
 
-  ### 🧠 Note
+## 🧠 Note
 
 Scheduled tasks are often used in combination with:
 - PowerShell execution
@@ -589,6 +589,7 @@ DeviceNetworkEvents
 | project Timestamp, DeviceName, RemoteIP, RemotePort, InitiatingProcessFileName
 | order by Timestamp desc
 ```
+
 ![Devices Reporting](../images/ExternalConnectionsfromScriptingTools.png)
 
 ### Table Used
