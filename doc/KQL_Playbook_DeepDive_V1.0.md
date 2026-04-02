@@ -29,18 +29,112 @@ Process → Network → Logon → Alerts → Identity → Email
 
 ---
 
+## 🧠 KQL Foundations
 
+This section provides the foundational knowledge required to effectively use Kusto Query Language (KQL) within Microsoft Defender.
+
+It is designed to help you understand:
+- how Defender data is structured  
+- which tables to use  
+- how to write and interpret queries  
+- key terminology used throughout this playbook  
+
+---
+
+### 🧱 Defender Data Model
+
+Microsoft Defender stores telemetry across multiple tables that represent different types of activity on endpoints.
+
+These tables are connected through common identifiers such as:
+
+- DeviceId  
+- Timestamp  
+- AccountName  
+- InitiatingProcess  
+
+Understanding how these tables relate allows you to:
+
+- correlate activity across multiple data sources  
+- reconstruct attack chains  
+- pivot between processes, network, and file activity
+
+---
 
 ### ⚡ KQL Quick Cheat Sheet
 
 Common operators and patterns used throughout this playbook:
+
+---
+
+### 📊 Core Tables
+
+The following tables are most commonly used in this playbook:
+
+---
+
+#### DeviceProcessEvents
+
+Tracks process execution on endpoints.
+
+Includes:
+- process creation  
+- parent-child relationships  
+- command line arguments  
+- execution context  
+
+---
+
+#### DeviceNetworkEvents
+
+Captures network activity initiated by processes.
+
+Includes:
+- remote IP address  
+- domain name  
+- protocol  
+- initiating process  
+
+---
+
+#### DeviceFileEvents
+
+Tracks file system activity.
+
+Includes:
+- file creation  
+- modification  
+- deletion  
+
+---
+
+#### DeviceRegistryEvents
+
+Tracks registry changes.
+
+Used for:
+- persistence mechanisms  
+- Defender configuration changes  
+- tampering activity  
+
+---
+
+#### DeviceLogonEvents
+
+Captures authentication events.
+
+Useful for:
+- user activity tracking  
+- lateral movement detection  
+- credential misuse  
+
+---
 
 #### 🔍 Filtering
 
 ```kusto
 DeviceProcessEvents
 | where ProcessCommandLine contains "powershell"
-```
+
 
 ---
 
