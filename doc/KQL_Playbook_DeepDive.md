@@ -472,6 +472,17 @@ Finds IPs rarely seen across the environment.
 
 ⚠️ Hunting query
 
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- block IP/domain via Defender or firewall
+- isolate affected device
+- review all connections to the IP across environment
+- investigate associated processes
+
+**Medium Confidence**
+- validate IP against threat intelligence
+- monitor for repeated communication
 ---
 
 ## Unusual Public Port Usage
