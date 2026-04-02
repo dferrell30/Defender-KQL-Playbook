@@ -246,6 +246,7 @@ DeviceProcessEvents
 | project Timestamp, DeviceName, AccountName, ProcessCommandLine
 | order by Timestamp desc
 ```
+![Devices Reporting](../images/ScheduleTaskCreation.png)
 
 ### Table Used
 
