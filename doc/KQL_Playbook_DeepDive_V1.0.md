@@ -29,47 +29,21 @@ Process → Network → Logon → Alerts → Identity → Email
 
 ---
 
-## 📌 Table of Contents
 
-- [🎯 Introduction](#-introduction)
-  - [Purpose](#purpose)
-  - [Problem Statement](#problem-statement)
-  - [What This Playbook Solves](#what-this-playbook-solves)
 
-- [🧠 KQL Foundations](#-kql-foundations)
-  - [Defender Data Model](#defender-data-model)
-  - [Core Tables](#core-tables)
-  - [How KQL Works in Defender](#how-kql-works-in-defender)
+### ⚡ KQL Quick Cheat Sheet
 
-- [🗂️ Query Categories](#️-query-categories)
-  - [Execution](#execution)
-  - [Defense Evasion](#defense-evasion)
-  - [Credential Access](#credential-access)
-  - [Persistence](#persistence)
-  - [Lateral Movement](#lateral-movement)
-  - [Investigation Workflows](#investigation-workflows)
+Common operators and patterns used throughout this playbook:
 
-- [🚀 How to Use This Playbook](#-how-to-use-this-playbook)
+#### 🔍 Filtering
 
-- [🔎 Investigation Workflows](#-investigation-workflows)
-  - [Suspicious PowerShell Execution](#-investigation-workflow-suspicious-powershell-execution)
-  - [Defender Tampering / Defense Evasion](#-investigation-workflow-defender-tampering--defense-evasion)
-  - [Credential Access (LSASS / Dumping)](#-investigation-workflow-credential-access-lsass--dumping)
-  - [Suspicious Process Chain](#-investigation-workflow-suspicious-process-chain)
-  - [Suspicious Network Activity](#-investigation-workflow-suspicious-network-activity)
-  - [Device Triage (Post Alert)](#-investigation-workflow-device-triage-post-alert)
-
-- [📊 Expected Results](#-expected-results)
-  - [Successful Validation](#-successful-validation)
-  - [Potential Findings](#-potential-findings)
-
-- [🖼️ Screenshots](#️-screenshots)
-
-- [⚠️ Disclaimer](#️-disclaimer)
-- [⚖️ Professional Disclaimer](#️-professional-disclaimer)
-- [📄 License](#-license)
+```kusto
+DeviceProcessEvents
+| where ProcessCommandLine contains "powershell"
+```
 
 ---
+
 
 # 🔍 1. ONBOARDING VALIDATION
 
@@ -84,8 +58,7 @@ DeviceInfo
 | summarize LastSeen = max(Timestamp) by DeviceName, OSPlatform
 | order by LastSeen desc
 ```
-## Query Output Example
-
+---
 
 ### Table Used
 
@@ -1466,18 +1439,16 @@ Steps:
 
 ---
 
-# 🧭 Final Insight
-
-> This is no longer just a set of queries.
-> This is a full operational detection framework.
-
 # 🛡️ Custom Detection Creation (Defender XDR)
 
 🎯 Goal
 
 Turn validated KQL queries into automated detections and alerts.
 
+---
+
 🧭 Step-by-Step
+
 1. Open Advanced Hunting
 
 Go to:
@@ -1499,23 +1470,24 @@ Click:
 
 👉 “Create detection rule”
 
-⚙️ Recommended Settings
-🔴 Severity
-Scenario	Severity
-Confirmed malicious (PowerShell, Office chain)	High
-Suspicious but needs context	Medium
-Validation / anomaly queries	Low or none
-⏱️ Frequency
-Use Case	Frequency
-Active threats	Every 5–15 minutes
-General monitoring	Hourly
-Baseline/anomaly	Daily
-📊 Lookback Period
+- ⚙️ Recommended Settings
+- 🔴 Severity
+- Scenario	Severity
+- Confirmed malicious (PowerShell, Office chain)	High
+- Suspicious but needs context	Medium
+- Validation / anomaly queries	Low or none
+- ⏱️ Frequency
+- Use Case	Frequency
+- Active threats	Every 5–15 minutes
+- General monitoring	Hourly
+- Baseline/anomaly	Daily
+- 📊 Lookback Period
 
 Recommended:
 
 24 hours for most detections
 shorter for high-risk queries
+
 👤 Entities (CRITICAL)
 
 Always map:
@@ -1530,18 +1502,18 @@ File hash
 
 👉 This enables:
 
-investigation graph
-automated response
-🤖 Automated Actions
-🔥 High Confidence Detections
-isolate device
-run antivirus scan
-collect investigation package
-⚠️ Medium Confidence
-trigger investigation
-alert SOC team
-monitor behavior
-🚨 Example: PowerShell Detection
+- investigation graph
+- automated response
+- 🤖 Automated Actions
+- 🔥 High Confidence Detections
+- isolate device
+- run antivirus scan
+- collect investigation package
+- ⚠️ Medium Confidence
+- trigger investigation
+- alert SOC team
+- monitor behavior
+- 🚨 Example: PowerShell Detection
 
 Use query:
 
