@@ -59,6 +59,22 @@ Finds the most recent reporting timestamp for each device.
 
 ---
 
+### 🔍 What to Look For
+
+- devices missing recent check-in timestamps
+- inconsistent reporting across similar systems
+- newly onboarded devices not appearing
+
+### 🛠️ Recommended Remediation
+
+- verify device is active and powered on
+- confirm Defender agent is installed and healthy
+- check network connectivity
+- re-onboard device if necessary
+- remove decommissioned devices from inventory
+  
+---
+
 ## Stale Devices
 
 ```kusto
@@ -81,6 +97,19 @@ Finds devices not reporting recently.
 
 Active devices going silent.
 
+### 🔍 What to Look For
+
+- devices not reporting within expected timeframe
+- critical systems appearing inactive
+- sudden drop-off in reporting devices
+
+### 🛠️ Recommended Remediation
+
+- verify device is still in use
+- check Defender sensor health
+- confirm network access to Microsoft services
+- re-onboard device if necessary
+  
 ---
 
 # 📊 2. DISCOVERY & VISIBILITY
@@ -117,6 +146,19 @@ Shows alert distribution across devices.
 
 Devices with no alerts despite activity.
 
+### 🔍 What to Look For
+
+- devices with no alerts despite active telemetry
+- unusually high alert volume on single devices
+- mismatch between activity and alerts
+
+### 🛠️ Recommended Remediation
+
+- review alert policies and coverage
+- validate detection configurations
+- investigate noisy endpoints
+- tune alert rules as needed
+  
 ---
 
 # ⚠️ 3. THREAT HUNTING
@@ -258,6 +300,27 @@ Identifies changes to registry locations commonly used for persistence.
 
 ---
 
+### 🔍 What to Look For
+
+- entries in Run or RunOnce keys
+- executables in temp or user directories
+- unknown or unsigned binaries
+- persistence linked to recent activity
+
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- remove malicious registry entry
+- isolate device
+- investigate associated file
+- review persistence across system
+
+**Medium Confidence**
+- validate application legitimacy
+- compare against known baseline
+
+---
+
 ## Scheduled Task Creation
 
 ```kusto
@@ -371,6 +434,27 @@ Detects creation of Windows services, often used for persistence or privilege es
 
 ---
 
+### 🔍 What to Look For
+
+- new or unusual service names
+- services pointing to temp or user directories
+- services created by non-admin users
+- PowerShell-based service creation
+
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- disable or remove service
+- isolate device
+- investigate service binary
+- review privilege escalation activity
+
+**Medium Confidence**
+- validate service purpose
+- monitor for repeated creation
+
+---
+
 # 🔑 5. CREDENTIAL & ACCOUNT ABUSE
 
 ## Failed Logons
@@ -395,13 +479,6 @@ Identifies repeated failed logon attempts.
 
 * brute force detection
 * password spray
-  
-### 🔍 What to Look For
-
-- repeated failed attempts for a single account
-- multiple accounts failing on one device
-- rapid login attempts (spray behavior)
-- failures followed by successful login
 
 ### Normal vs Suspicious
 
@@ -417,6 +494,27 @@ Identifies repeated failed logon attempts.
 
 ✅ Medium–High
 
+---
+
+### 🔍 What to Look For
+
+- repeated failed attempts for one account
+- multiple accounts failing from one device
+- rapid login attempts (spray behavior)
+- failures followed by successful login
+
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- block source device or IP
+- reset credentials
+- enforce MFA
+- investigate brute force activity
+
+**Medium Confidence**
+- monitor login attempts
+- review authentication patterns
+  
 ---
 
 ## Account Across Multiple Devices
@@ -719,6 +817,23 @@ Finds accounts used across many devices.
 
 ⚠️ Context dependent
 
+### 🔍 What to Look For
+
+- accounts used across many devices
+- unusual spread of standard user accounts
+- access inconsistent with normal behavior
+
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- reset credentials
+- investigate lateral movement
+- restrict account access
+
+**Medium Confidence**
+- validate usage patterns
+- monitor for abnormal activity
+
 ---
 
 # 🌐 6. NETWORK HUNTING
@@ -801,6 +916,23 @@ Finds IPs rarely seen across the environment.
 
 ⚠️ Hunting query
 
+### 🔍 What to Look For
+
+- IPs seen on very few devices
+- uncommon external infrastructure
+- connections tied to scripting tools
+- lack of known business purpose
+
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- block IP/domain
+- isolate affected device
+- investigate associated processes
+
+**Medium Confidence**
+- validate IP with threat intelligence
+- monitor for repeated connections
 
 ### 🛠️ Recommended Remediatio
 
@@ -1365,4 +1497,22 @@ Recommended:
 Severity: High
 Frequency: 15 minutes
 Action: isolate device
+
+---
+
+# 🧠 Analyst Guidance
+
+This playbook is designed to support:
+
+- telemetry validation  
+- threat hunting  
+- detection engineering  
+- incident response  
+
+Each query should be:
+- validated in your environment  
+- tuned to reduce noise  
+- operationalized as needed  
+
+> KQL is not just for hunting — it is for validating, Stay Safe Defenders!
 
