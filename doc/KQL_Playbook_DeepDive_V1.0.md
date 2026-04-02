@@ -31,7 +31,7 @@
 - [⚠️ Disclaimer](#️-disclaimer)
 - [⚖️ Professional Disclaimer](#️-professional-disclaimer)
 - [📄 License](#-license)
-- 
+
 ---
 
 ## 📘 Playbook Summary
@@ -209,7 +209,9 @@ Captures authentication events.
 Useful for:
 - user activity tracking  
 - lateral movement detection  
-- credential misuse  
+- credential misuse
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -368,6 +370,8 @@ Devices with no alerts despite activity.
 - validate detection configurations
 - investigate noisy endpoints
 - tune alert rules as needed
+
+🔝 [Back to Table of Contents](#-table-of-contents)
   
 ---
 
@@ -415,6 +419,8 @@ Encoded commands, downloads.
 - review command line for legitimacy
 - validate user activity
 - monitor for repeated behavior
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -466,6 +472,8 @@ Detects macro/phishing execution chains.
 * onboarding = validation
 * visibility = confirmation
 * hunting = detection
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -531,6 +539,8 @@ Identifies changes to registry locations commonly used for persistence.
 **Medium Confidence**
 - validate application legitimacy
 - compare against known baseline
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -607,6 +617,8 @@ Always correlate task creation with process and network activity.
 - document known task
 - add to allowlist for future filtering
 
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 ## Service Creation (Persistence / Privilege Abuse)
@@ -666,6 +678,8 @@ Detects creation of Windows services, often used for persistence or privilege es
 **Medium Confidence**
 - validate service purpose
 - monitor for repeated creation
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -728,6 +742,8 @@ Identifies repeated failed logon attempts.
 **Medium Confidence**
 - monitor login attempts
 - review authentication patterns
+
+🔝 [Back to Table of Contents](#-table-of-contents)
   
 ---
 
@@ -766,6 +782,8 @@ Finds accounts used across many devices.
 ### Detection Potential
 
 ⚠️ Context dependent
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -835,6 +853,8 @@ Identifies outbound connections from scripting or command-line tools.
 - compare against known infrastructure
 - monitor for repeated connections
 
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 ## Rare External IPs
@@ -891,6 +911,8 @@ Finds IPs rarely seen across the environment.
 **Low Confidence**
 - document known external services
 - allowlist if legitimate
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -953,9 +975,13 @@ These layers start connecting behavior across the environment.
 **Medium Confidence**
 - validate port usage against expected application behavior
 - monitor for recurrence
+
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 # 🔑 5. CREDENTIAL & ACCOUNT ABUSE
+
 
 ## Failed Logons
 
@@ -993,6 +1019,8 @@ Identifies repeated failed logon attempts.
 ### Detection Potential
 
 ✅ Medium–High
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1049,6 +1077,8 @@ Finds accounts used across many devices.
 - validate usage patterns
 - monitor for abnormal activity
 
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 # 🌐 6. NETWORK HUNTING
@@ -1097,7 +1127,7 @@ Identifies outbound connections from scripting or command-line tools.
 - rare or unknown external destinations
 - unusual command-line activity tied to connections
 
-### 🛠️ Recommended Remediation
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1149,7 +1179,7 @@ Finds IPs rarely seen across the environment.
 - validate IP with threat intelligence
 - monitor for repeated connections
 
-### 🛠️ Recommended Remediatio
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1218,6 +1248,8 @@ Unusual port usage often becomes more meaningful when correlated with:
 - document known application behavior
 - add to allowlist for future filtering
 
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 # 🔥 Section Summary
@@ -1240,6 +1272,8 @@ These layers start connecting behavior across the environment.
 **Medium Confidence**
 - validate port usage against expected application behavior
 - monitor for recurrence
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1304,6 +1338,8 @@ Finds files created in common attacker staging locations.
 - check file hash reputation
 - monitor execution behavior
 
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 ## Archive / Compression Activity
@@ -1353,6 +1389,8 @@ Detects file compression, often used before data exfiltration.
 - validate business use case
 - monitor for large or repeated archive activity
 
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 ## Certutil Abuse (Download / Decode)
@@ -1393,6 +1431,8 @@ Detects abuse of certutil to download or decode payloads.
 **Medium Confidence**
 - validate usage against known admin activity
 - monitor command usage patterns
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1445,6 +1485,8 @@ Finds processes rarely seen across the environment.
 - validate process against known software inventory
 - monitor for additional executions
 
+ 🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 ## Unusual Low Activity Devices
@@ -1480,6 +1522,8 @@ Identifies devices with unusually low activity.
 - confirm Defender sensor health
 - check connectivity and telemetry ingestion
 - re-onboard device if needed
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1520,6 +1564,8 @@ Filters enterprise management activity.
 ### Impact
 
 🔥 Critical before production detections
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1611,6 +1657,8 @@ Steps:
 
 * monitor
 * initiate investigation
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1712,6 +1760,8 @@ Severity: High
 Frequency: 15 minutes
 Action: isolate device
 
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 # 🧠 Analyst Guidance
@@ -1730,6 +1780,8 @@ Each query should be:
 
 > KQL is not just for hunting — it is for validating, Stay Safe Defenders!
 
+🔝 [Back to Table of Contents](#-table-of-contents)
+
 ---
 
 ## 🔎 Investigation Workflows
@@ -1738,9 +1790,9 @@ The following workflows provide step-by-step guidance for investigating common D
 
 These are designed to help transition from:
 - raw query execution  
-- to structured investigation and decision-making  
+- to structured investigation and decision-making
 
----
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1804,7 +1856,9 @@ Confirm suspicious if:
 
 Otherwise:
 
-- Validate as admin or expected scripted activity  
+- Validate as admin or expected scripted activity
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1866,7 +1920,9 @@ Suspicious if:
 
 Otherwise:
 
-- Validate against known admin actions  
+- Validate against known admin actions
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1929,7 +1985,9 @@ Suspicious if:
 
 Otherwise:
 
-- Validate expected system or security tooling behavior  
+- Validate expected system or security tooling behavior 
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -1986,7 +2044,9 @@ Suspicious if:
 
 Otherwise:
 
-- Expected application behavior  
+- Expected application behavior
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -2044,7 +2104,9 @@ Suspicious if:
 
 Otherwise:
 
-- Expected application/network behavior  
+- Expected application/network behavior
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -2118,9 +2180,10 @@ Escalate if:
 
 Otherwise:
 
-- Close as benign or expected behavior  
+- Close as benign or expected behavior
+  
 
----
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -2133,7 +2196,9 @@ Throughout this deep dive, we established a consistent approach to:
 - understanding Defender telemetry and data relationships  
 - identifying suspicious behavior using KQL  
 - pivoting across process, network, file, and registry data  
-- validating findings through repeatable investigation workflows  
+- validating findings through repeatable investigation workflows
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -2150,7 +2215,9 @@ This ensures that:
 
 - queries are used in context  
 - findings are verified before conclusions are made  
-- investigations are structured and repeatable  
+- investigations are structured and repeatable
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -2170,6 +2237,8 @@ Additionally, mature use of KQL allows teams to:
 - strengthen overall security posture  
 
 Threat hunting is not a one-time activity — it is a continuous process of refinement and improvement. :contentReference[oaicite:0]{index=0}  
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
@@ -2192,7 +2261,9 @@ The next step in maturity is to:
 - tune queries for accuracy and performance  
 - integrate findings into broader incident response processes  
 
-This transforms KQL from a hunting tool into a **core component of detection engineering and security operations**. :contentReference[oaicite:1]{index=1}  
+This transforms KQL from a hunting tool into a **core component of detection engineering and security operations**. :contentReference[oaicite:1]{index=1} 
+
+🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
 
