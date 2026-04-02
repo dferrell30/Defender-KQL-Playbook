@@ -1,6 +1,7 @@
 # 🔍 KQL Playbook Deep Dive Version 1.0
 
 ## 📌 Table of Contents
+<a name="-table-of-contents"></a>
 
 - [🎯 Introduction](#-introduction)
 - [📘 Playbook Summary](#-playbook-summary)
