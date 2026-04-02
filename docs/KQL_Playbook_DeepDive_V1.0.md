@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn-icons-png.flaticon.com/512/565/565547.png" width="120" alt="Shield Logo"/>
+  <img src="https://img.icons8.com/fluency/96/shield-with-checkmark.png" width="120" alt="Shield Logo"/>
 </p>
 
 # 🔍 KQL Playbook Deep Dive Version 1.0
