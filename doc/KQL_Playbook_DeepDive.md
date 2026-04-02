@@ -268,14 +268,46 @@ Detects creation of scheduled tasks used for persistence or delayed execution.
 
 ### Pivot
 
-* parent process
-* execution path
-* logon activity
+Check the following:
+
+- DeviceProcessEvents → what executed
+- DeviceFileEvents → what file was dropped
+- DeviceNetworkEvents → did it call out
+- DeviceLogonEvents → who created it
+
+  ### 🧠 Note
+
+Scheduled tasks are often used in combination with:
+- PowerShell execution
+- file staging in temp directories
+- outbound network connections
+
+Always correlate task creation with process and network activity.
 
 ### Detection Potential
 
 🔥 High
 
+### 🛠️ Recommended Remediation
+
+**High Confidence (malicious persistence identified)**
+- isolate the device immediately
+- disable or delete the scheduled task
+- identify and remove the associated file or script
+- run full antivirus scan
+- review all scheduled tasks on the device for additional persistence
+- reset credentials for the affected account
+- investigate lateral movement or additional compromise
+
+**Medium Confidence (suspicious but unconfirmed)**
+- validate task name and purpose with system owner
+- review execution path and associated file
+- monitor task execution behavior
+- check for repeated or similar task creation across environment
+
+**Low Confidence (likely benign)**
+- document known task
+- add to allowlist for future filtering
 ---
 
 ## Service Creation (Persistence / Privilege Abuse)
