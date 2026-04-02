@@ -1,4 +1,50 @@
-# 🔍 KQL Playbook Deep Dive
+# 🔍 KQL Playbook Deep Dive Version 1.0
+
+---
+
+## 📘 Playbook Summary
+
+This deep dive playbook provides a structured approach to using Kusto Query Language (KQL) within Microsoft Defender for Endpoint and Defender XDR for threat hunting and investigation.
+
+Rather than presenting isolated queries, this playbook focuses on building a **repeatable investigation methodology** that enables defenders to:
+
+- understand Defender telemetry and data relationships  
+- use KQL to identify suspicious activity  
+- pivot across process, network, file, and registry events  
+- validate findings through structured investigation workflows  
+- transition from reactive alert analysis to proactive hunting  
+
+---
+
+### 🎯 Key Objectives
+
+This playbook is designed to help:
+
+- standardize Defender hunting and investigation practices  
+- reduce time to triage and validate suspicious activity  
+- improve consistency in how KQL is used across investigations  
+- bridge the gap between raw queries and real-world incident response  
+
+---
+
+### 🧠 What Makes This Different
+
+Most KQL resources provide individual queries without context.
+
+This playbook instead focuses on:
+
+- **how to think during an investigation**  
+- **how to pivot across Defender data sources**  
+- **how to interpret results, not just generate them**  
+- **how to apply queries in real-world scenarios**  
+
+---
+
+### 🔄 Investigation Approach
+
+The methodology used throughout this playbook follows a consistent model:
+
+---
 
 ## 🧠 How to Use This Playbook
 
@@ -37,8 +83,8 @@ It is designed to help you understand:
 - how Defender data is structured  
 - which tables to use  
 - how to write and interpret queries  
-- key terminology used throughout this playbook  
-
+- key terminology used throughout this playbook
+  
 ---
 
 ### 🧱 Defender Data Model
