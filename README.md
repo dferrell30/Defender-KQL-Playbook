@@ -3,13 +3,7 @@
 # 🛡️ Defender KQL Playbook
 
 > A structured Microsoft Defender XDR / Defender for Endpoint KQL playbook for threat hunting, investigation, validation, and detection use cases.
-
-![Version](https://img.shields.io/badge/version-v1.0-blue)
-![Release](https://img.shields.io/badge/release-0.1-green)
-![Platform](https://img.shields.io/badge/platform-Microsoft%20Defender%20XDR-5B5FC7)
-![Language](https://img.shields.io/badge/language-KQL-0078D4)
-![License](https://img.shields.io/badge/license-MIT-brightgreen)
-
+> 
 ---
 
 ## 🎯 Purpose
