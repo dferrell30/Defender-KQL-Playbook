@@ -1,5 +1,35 @@
 # 🔍 KQL Playbook Deep Dive Version 1.0
 
+## 📌 Table of Contents
+
+- [🎯 Introduction](#-introduction)
+- [📘 Playbook Summary](#-playbook-summary)
+- [🚨 Problem Statement](#-problem-statement)
+- [🧠 What This Playbook Solves](#-what-this-playbook-solves)
+
+- [🧠 KQL Foundations](#-kql-foundations)
+  - [Defender Data Model](#-defender-data-model)
+  - [Core Tables](#-core-tables)
+  - [KQL Quick Cheat Sheet](#-kql-quick-cheat-sheet)
+  - [KQL Glossary](#-kql-glossary)
+
+- [🚀 How to Use This Playbook](#-how-to-use-this-playbook)
+
+- [🔎 Investigation Workflows](#-investigation-workflows)
+  - [Suspicious PowerShell Execution](#-investigation-workflow-suspicious-powershell-execution)
+  - [Defender Tampering / Defense Evasion](#-investigation-workflow-defender-tampering--defense-evasion)
+  - [Credential Access (LSASS / Dumping)](#-investigation-workflow-credential-access-lsass--dumping)
+  - [Suspicious Process Chain](#-investigation-workflow-suspicious-process-chain)
+  - [Suspicious Network Activity](#-investigation-workflow-suspicious-network-activity)
+  - [Device Triage (Post Alert)](#-investigation-workflow-device-triage-post-alert)
+
+- [📊 Expected Results](#-expected-results)
+
+- [🧾 Closing Summary](#-closing-summary)
+
+- [⚠️ Disclaimer](#️-disclaimer)
+- [⚖️ Professional Disclaimer](#️-professional-disclaimer)
+- [📄 License](#-license)
 ---
 
 ## 📘 Playbook Summary
