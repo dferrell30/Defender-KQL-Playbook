@@ -22,11 +22,17 @@
 
 ## Devices Reporting
 
+### 📸 Example Output
+
+![Devices Reporting](../images/onboarding-validation.png)
+
 ```kusto
 DeviceInfo
 | summarize LastSeen = max(Timestamp) by DeviceName, OSPlatform
 | order by LastSeen desc
 ```
+## Query Output Example
+
 
 ### Table Used
 
