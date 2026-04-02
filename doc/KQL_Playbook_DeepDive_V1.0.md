@@ -29,11 +29,45 @@ Process → Network → Logon → Alerts → Identity → Email
 
 ---
 
-# 📑 Table of Contents
+## 📌 Table of Contents
 
-* [1. Onboarding Validation](#-1-onboarding-validation)
-* [2. Discovery & Visibility](#-2-discovery--visibility)
-* [3. Threat Hunting](#-3-threat-hunting)
+- [🎯 Introduction](#-introduction)
+  - [Purpose](#purpose)
+  - [Problem Statement](#problem-statement)
+  - [What This Playbook Solves](#what-this-playbook-solves)
+
+- [🧠 KQL Foundations](#-kql-foundations)
+  - [Defender Data Model](#defender-data-model)
+  - [Core Tables](#core-tables)
+  - [How KQL Works in Defender](#how-kql-works-in-defender)
+
+- [🗂️ Query Categories](#️-query-categories)
+  - [Execution](#execution)
+  - [Defense Evasion](#defense-evasion)
+  - [Credential Access](#credential-access)
+  - [Persistence](#persistence)
+  - [Lateral Movement](#lateral-movement)
+  - [Investigation Workflows](#investigation-workflows)
+
+- [🚀 How to Use This Playbook](#-how-to-use-this-playbook)
+
+- [🔎 Investigation Workflows](#-investigation-workflows)
+  - [Suspicious PowerShell Execution](#-investigation-workflow-suspicious-powershell-execution)
+  - [Defender Tampering / Defense Evasion](#-investigation-workflow-defender-tampering--defense-evasion)
+  - [Credential Access (LSASS / Dumping)](#-investigation-workflow-credential-access-lsass--dumping)
+  - [Suspicious Process Chain](#-investigation-workflow-suspicious-process-chain)
+  - [Suspicious Network Activity](#-investigation-workflow-suspicious-network-activity)
+  - [Device Triage (Post Alert)](#-investigation-workflow-device-triage-post-alert)
+
+- [📊 Expected Results](#-expected-results)
+  - [Successful Validation](#-successful-validation)
+  - [Potential Findings](#-potential-findings)
+
+- [🖼️ Screenshots](#️-screenshots)
+
+- [⚠️ Disclaimer](#️-disclaimer)
+- [⚖️ Professional Disclaimer](#️-professional-disclaimer)
+- [📄 License](#-license)
 
 ---
 
