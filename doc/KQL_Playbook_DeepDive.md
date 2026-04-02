@@ -66,6 +66,7 @@ DeviceInfo
 | summarize LastSeen = max(Timestamp) by DeviceName
 | where LastSeen < ago(7d)
 ```
+![Devices Reporting](../images/StaleDevices.png)
 
 ### What It Does
 
