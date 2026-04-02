@@ -1,17 +1,76 @@
 # 🔍 KQL Playbook Deep Dive
 
-This document provides a structured approach to using KQL in Defender for Endpoint for:
+# 🛡️ Defender KQL Playbook
 
-- onboarding validation  
-- telemetry visibility  
-- threat hunting  
-- detection engineering  
+> A structured Microsoft Defender XDR / Defender for Endpoint KQL playbook for threat hunting, investigation, validation, and detection use cases.
 
-Each query includes:
-- purpose  
-- logic  
-- when to use  
-- interpretation guidance
+![Version](https://img.shields.io/badge/version-v1.0-blue)
+![Release](https://img.shields.io/badge/release-0.1-green)
+![Platform](https://img.shields.io/badge/platform-Microsoft%20Defender%20XDR-5B5FC7)
+![Language](https://img.shields.io/badge/language-KQL-0078D4)
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
+
+---
+
+## 🎯 Purpose
+
+This repository is intended to provide a **practical, repeatable, and structured KQL playbook** for Microsoft Defender hunting and investigation workflows.
+
+It is designed to help defenders:
+
+- Hunt for suspicious activity
+- Validate security controls
+- Investigate known behaviors
+- Accelerate triage and response
+- Build repeatable Defender hunting workflows
+
+---
+
+## 🚨 Problem Statement
+
+Many Defender KQL repositories are simply large lists of raw queries.
+
+While useful, that approach often leaves out critical context:
+
+- What the query is looking for
+- Why the behavior matters
+- When to run it
+- What “normal” vs “suspicious” looks like
+- What to do next if results are returned
+
+👉 The gap:
+
+Security teams often have queries, but not a **usable hunting playbook**
+
+This repository is meant to close that gap by providing **organized, documented, investigation-ready KQL content**
+
+---
+
+## 🧠 What This Playbook Solves
+
+This playbook helps answer questions like:
+
+- **What query should I run for this scenario?**
+- **How should I interpret the results?**
+- **Which tables are relevant in Defender?**
+- **What suspicious activity should I prioritize?**
+- **How do I use KQL more like an investigation workflow instead of a query list?**
+
+---
+
+## 🧱 Scope
+
+This playbook is focused on **Microsoft Defender XDR / Microsoft Defender for Endpoint hunting scenarios**, including:
+
+- Endpoint execution activity
+- PowerShell behavior
+- Suspicious process chains
+- Persistence indicators
+- Defense evasion patterns
+- Authentication and identity-related signals
+- Post-exploitation investigation workflows
+
+---
   
 ## 📘 Full Playbook
 
