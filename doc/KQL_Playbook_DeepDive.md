@@ -1208,7 +1208,7 @@ Steps:
 > This is no longer just a set of queries.
 > This is a full operational detection framework.
 
-##🛡️ Custom Detection Creation (Defender XDR)
+# 🛡️ Custom Detection Creation (Defender XDR)
 
 🎯 Goal
 
