@@ -426,6 +426,20 @@ Identifies outbound connections from scripting or command-line tools.
 
 🔥 High
 
+### 🛠️ Recommended Remediation
+
+**High Confidence**
+- isolate device
+- block remote IP/domain
+- run antivirus scan
+- review command-line execution chain
+- investigate potential command-and-control activity
+
+**Medium Confidence**
+- validate destination IP/domain
+- compare against known infrastructure
+- monitor for repeated connections
+
 ---
 
 ## Rare External IPs
