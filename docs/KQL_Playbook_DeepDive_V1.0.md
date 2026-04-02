@@ -30,9 +30,13 @@
 
 - [🧾 Closing Summary](#-closing-summary)
 
-- [ ⚠️ Disclaimer](#️-disclaimer)
-- [ ⚖️ Professional Disclaimer](#️-professional-disclaimer)
-- [ 📄 License](#-license)
+---
+
+## ⚠️ Disclaimer
+
+For full disclaimer and usage terms, please refer to the main repository README:
+
+➡️ [View Disclaimer](../README.md#️-disclaimer)
 
 ---
 
