@@ -180,10 +180,8 @@ Useful for:
 ```kusto
 DeviceProcessEvents
 | where ProcessCommandLine contains "powershell"
-
-
+```
 ---
-
 
 # 🔍 1. ONBOARDING VALIDATION
 
