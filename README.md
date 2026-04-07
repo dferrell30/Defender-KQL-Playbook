@@ -1,5 +1,7 @@
 # 🔍 KQL Playbook Deep Dive
 
+This project is actively being refined and updated based on testing and real-world use.
+
 # 🛡️ Defender KQL Playbook
 
 > A structured Microsoft Defender XDR / Defender for Endpoint KQL playbook for threat hunting, investigation, validation, and detection use cases.
