@@ -363,38 +363,6 @@ Devices with very low activity.
 
 ---
 
-## Alert Visibility
-
-```kusto
-DeviceAlertEvents
-| summarize count() by DeviceName
-```
-
-### What It Does
-
-Shows alert distribution across devices.
-
-### Suspicious
-
-Devices with no alerts despite activity.
-
-### 🔍 What to Look For
-
-- devices with no alerts despite active telemetry
-- unusually high alert volume on single devices
-- mismatch between activity and alerts
-
-### 🛠️ Recommended Remediation
-
-- review alert policies and coverage
-- validate detection configurations
-- investigate noisy endpoints
-- tune alert rules as needed
-
-🔝 [Back to Table of Contents](#-table-of-contents)
-  
----
-
 # ⚠️ 3. THREAT HUNTING
 
 ## Suspicious PowerShell
