@@ -403,6 +403,14 @@ DeviceProcessEvents
 
 ![Devices Reporting](../images/Suspicioiuspowershell.png)
 
+Below is the Powershell needed to investigate Poweshell run as System (helpful for NTLM Credential theft alerts)
+
+```Kusto
+DeviceProcessEvents
+| where FileName =~ "powershell.exe"
+| where ProcessCommandLine has_any ("EncodedCommand","DownloadString","Invoke-WebRequest")
+```
+
 ### What It Does
 
 Detects common attacker scripting patterns.
