@@ -3,7 +3,6 @@
 ### 🔍 KQL Playbook Deep Dive Version 1.0
 
 ## 📌 Table of Contents
-<a name="-table-of-contents"></a>
 
 - [🎯 Introduction](#-introduction)
 - [📘 Playbook Summary](#-playbook-summary)
@@ -11,10 +10,10 @@
 - [🧠 What This Playbook Solves](#-what-this-playbook-solves)
 
 - [🧠 KQL Foundations](#-kql-foundations)
-  - [Defender Data Model](#-defender-data-model)
-  - [Core Tables](#-core-tables)
-  - [KQL Quick Cheat Sheet](#-kql-quick-cheat-sheet)
-  - [KQL Queries](#-KQL-Queries)
+  - [🧱 Defender Data Model](#-defender-data-model)
+  - [📊 Core Tables](#-core-tables)
+  - [⚡ KQL Quick Cheat Sheet](#-kql-quick-cheat-sheet)
+  - [🔍 KQL Queries](#-kql-queries)
 
 - [🚀 How to Use This Playbook](#-how-to-use-this-playbook)
 
@@ -27,7 +26,6 @@
   - [Device Triage (Post Alert)](#-investigation-workflow-device-triage-post-alert)
 
 - [📊 Expected Results](#-expected-results)
-
 - [🧾 Closing Summary](#-closing-summary)
 
 ---
