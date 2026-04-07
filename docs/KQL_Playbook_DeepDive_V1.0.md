@@ -4,16 +4,11 @@
 
 ## 📌 Table of Contents
 
-- [🎯 Introduction](#-introduction)
-- [📘 Playbook Summary](#-playbook-summary)
-- [🚨 Problem Statement](#-problem-statement)
-- [🧠 What This Playbook Solves](#-what-this-playbook-solves)
-
 - [🧠 KQL Foundations](#-kql-foundations)
   - [🧱 Defender Data Model](#-defender-data-model)
   - [📊 Core Tables](#-core-tables)
   - [⚡ KQL Quick Cheat Sheet](#-kql-quick-cheat-sheet)
-- [🔍 KQL Queries](#-kql-queries)
+- [🔍 KQL Queries](#-KQLQueries)
 
 - [🚀 How to Use This Playbook](#-how-to-use-this-playbook)
 
