@@ -246,7 +246,7 @@ This section of the playbook contains KQL queries used for onboarding, threat hu
 
 ---
 
-# 🔍 1. ONBOARDING VALIDATION
+# 🔍 1. ONBOARDING VALIDATION AND HEALTH
 
 ## Devices Reporting
 
@@ -258,6 +258,33 @@ This section of the playbook contains KQL queries used for onboarding, threat hu
 DeviceInfo
 | summarize LastSeen = max(Timestamp) by DeviceName, OSPlatform
 | order by LastSeen desc
+```
+
+// Best practice endpoint configurations for Microsoft Defender for Endpoint deployment.
+
+This query will be used to check device health, please note if Network Protection is disbled, check the endpoint state to see if it is in passive mode in the gui to confirm. If in passive recommend running the Microsoft Defender for Endpoint Client Analyzer either live session or local machine (elevated access) The Analyzer can be found here https://learn.microsoft.com/en-us/defender-endpoint/run-analyzer-windows
+
+```Kusto
+DeviceTvmSecureConfigurationAssessment
+| where ConfigurationId in ("scid-91", "scid-2000", "scid-2001", "scid-2002", "scid-2003", "scid-2010", "scid-2011", "scid-2012", "scid-2013", "scid-2014", "scid-2016")
+| summarize arg_max(Timestamp, IsCompliant, IsApplicable) by DeviceId, ConfigurationId
+| extend Test = case(
+    ConfigurationId == "scid-2000", "SensorEnabled",
+    ConfigurationId == "scid-2001", "SensorDataCollection",
+    ConfigurationId == "scid-2002", "ImpairedCommunications",
+    ConfigurationId == "scid-2003", "TamperProtection",
+    ConfigurationId == "scid-2010", "AntivirusEnabled",
+    ConfigurationId == "scid-2011", "AntivirusSignatureVersion",
+    ConfigurationId == "scid-2012", "RealtimeProtection",
+    ConfigurationId == "scid-91", "BehaviorMonitoring",
+    ConfigurationId == "scid-2013", "PUAProtection",
+    ConfigurationId == "scid-2014", "AntivirusReporting",
+    ConfigurationId == "scid-2016", "CloudProtection",
+    "N/A"),
+    Result = case(IsApplicable == 0, "N/A", IsCompliant == 1, "GOOD", "BAD")
+| extend packed = pack(Test, Result)
+| summarize Tests = make_bag(packed) by DeviceId
+| evaluate bag_unpack(Tests)
 ```
 ---
 
