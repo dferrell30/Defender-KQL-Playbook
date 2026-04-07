@@ -286,6 +286,11 @@ DeviceTvmSecureConfigurationAssessment
 | summarize Tests = make_bag(packed) by DeviceId
 | evaluate bag_unpack(Tests)
 ```
+
+### 📸 Device Health Output
+
+Below you can see if any onboarded systems are in distress or potentially have a third-party anti-virus installed.
+
 ![DeviceHealthOutput](../images/DeviceHealthOutput.png)
 
 ---
