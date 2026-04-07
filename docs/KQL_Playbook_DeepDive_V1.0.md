@@ -286,7 +286,10 @@ DeviceTvmSecureConfigurationAssessment
 | summarize Tests = make_bag(packed) by DeviceId
 | evaluate bag_unpack(Tests)
 ```
+![DeviceHealthOutput](../images/DeviceHealthOutput.png)
+
 ---
+
 
 ### Table Used
 
