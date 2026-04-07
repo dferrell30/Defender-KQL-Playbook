@@ -160,13 +160,13 @@ Understanding how these tables relate allows you to:
 
 ---
 
-### ⚡ KQL Quick Cheat Sheet
+# ⚡ KQL Quick Cheat Sheet
 
 Common operators and patterns used throughout this playbook:
 
 ---
 
-### 📊 Core Tables
+## 📊 Core Tables
 
 The following tables are most commonly used in this playbook:
 
@@ -184,7 +184,7 @@ Includes:
 
 ---
 
-#### DeviceNetworkEvents
+### DeviceNetworkEvents
 
 Captures network activity initiated by processes.
 
@@ -196,7 +196,7 @@ Includes:
 
 ---
 
-#### DeviceFileEvents
+### DeviceFileEvents
 
 Tracks file system activity.
 
@@ -207,7 +207,7 @@ Includes:
 
 ---
 
-#### DeviceRegistryEvents
+### DeviceRegistryEvents
 
 Tracks registry changes.
 
@@ -218,7 +218,7 @@ Used for:
 
 ---
 
-#### DeviceLogonEvents
+### DeviceLogonEvents
 
 Captures authentication events.
 
@@ -231,7 +231,7 @@ Useful for:
 
 ---
 
-#### 🔍 Filtering
+### 🔍 Filtering
 
 ```kusto
 DeviceProcessEvents
