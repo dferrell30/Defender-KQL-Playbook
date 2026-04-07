@@ -14,7 +14,7 @@
   - [Defender Data Model](#-defender-data-model)
   - [Core Tables](#-core-tables)
   - [KQL Quick Cheat Sheet](#-kql-quick-cheat-sheet)
-  - [KQL Queries](#-kql-queries)
+  - [KQL Queries](#-KQL-Queries)
 
 - [🚀 How to Use This Playbook](#-how-to-use-this-playbook)
 
@@ -240,7 +240,9 @@ DeviceProcessEvents
 
 🔝 [Back to Table of Contents](#-table-of-contents)
 
- # 🔍 kql-queries
+ # 🔍 KQL-Queries
+
+This section of the playbook contains KQL queries used for onboarding, threat hunting, and validation.
 
 ---
 
