@@ -15,7 +15,7 @@
   - [Core Tables](#-core-tables)
   - [KQL Quick Cheat Sheet](#-kql-quick-cheat-sheet)
   - [KQL Glossary](#-kql-glossary)
-  - [KQL Glossary](#-kql-Queries)
+  - [KQL Queries](#-kql-Queries)
 
 - [🚀 How to Use This Playbook](#-how-to-use-this-playbook)
 
