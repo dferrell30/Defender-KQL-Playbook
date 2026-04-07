@@ -240,6 +240,8 @@ DeviceProcessEvents
 
 🔝 [Back to Table of Contents](#-table-of-contents)
 
+#⚡KQL Queries
+
 ---
 
 # 🔍 1. ONBOARDING VALIDATION
