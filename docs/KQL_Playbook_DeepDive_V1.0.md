@@ -8,7 +8,7 @@
   - [🧱 Defender Data Model](#-defender-data-model)
   - [📊 Core Tables](#-core-tables)
   - [⚡ KQL Quick Cheat Sheet](#-kql-quick-cheat-sheet)
-- [🔍 KQL Queries](#-KQLQueries)
+- [🔍 KQL Queries](#-KQL-Queries)
 
 - [🚀 How to Use This Playbook](#-how-to-use-this-playbook)
 
