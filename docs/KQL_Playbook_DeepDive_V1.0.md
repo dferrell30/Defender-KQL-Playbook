@@ -240,7 +240,7 @@ DeviceProcessEvents
 
 🔝 [Back to Table of Contents](#-table-of-contents)
 
- # 🔍 KQL-Queries
+ # 🔍 kql-queries
 
 ---
 
