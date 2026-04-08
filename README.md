@@ -10,21 +10,18 @@ This repository contains a structured KQL playbook for Microsoft Defender and En
 
 ## 📦 Versions
 
-### 🔹 v2.0 — Zero Trust Playbook (Latest)
-- Identity, Device, Network aligned
-- Entra + Defender detection
-  
-👉 [View v2.0](./v2.0/zero-trust-playbook.md)
-
-<p align="center">
-  <img src="./images/zero-trust-framework.png" width="700">
-</p>
+### 🥇 v2.0 — Zero Trust KQL Playbook (Latest)
+- Identity + Device + Network
+- Zero Trust aligned detection
+👉 [View Playbook](./v2.0/zero-trust-playbook.md)
 
 ---
 
-### 🔹 v1.0 — Defender Playbook
+### v1.0 — Defender KQL Playbook
 - Endpoint-focused hunting and investigation
-👉 [View v1.0](./v1.0/defender-playbook.md)
+👉 [View Playbook](./v1.0/defender-playbook.md)
+
+---
 
 ## 🛡️ Zero Trust Alignment
 
