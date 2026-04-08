@@ -14,7 +14,7 @@ Each section provides KQL queries and investigation workflows aligned to these p
 
 ## 🛡️ Zero Trust Model
 
-![Zero Trust Diagram](./images/zero-trust-diagram.png)
+[![Zero Trust Diagram](./images/Zero Trust Security model infographic.png)
 
 ## 🎯 Purpose
 
