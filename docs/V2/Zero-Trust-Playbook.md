@@ -9,7 +9,36 @@ It is designed to help defenders:
 - detect identity-based threats  
 - investigate endpoint activity  
 - analyze network behavior  
-- correlate signals across security layers  
+- correlate signals across security layers
+
+# 🔐 Identity (Entra)
+
+## 🔐 Identity Overview
+
+Identity telemetry provides visibility into authentication behavior, session activity, and access patterns.
+
+This includes:
+
+- sign-in activity  
+- MFA challenges  
+- token usage  
+- risk signals  
+
+---
+
+## 📊 Identity Core Tables
+
+### SigninLogs
+Tracks authentication activity including:
+
+- IP address  
+- location  
+- client app  
+- risk level  
+
+---
+
+## 🔍 Identity Queries
 
 ---
 
