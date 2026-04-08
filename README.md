@@ -2,11 +2,15 @@
 
 This project is actively being refined and updated based on testing and real-world use.
 
-# 🛡️ Defender KQL Playbook
+## 🛡️ Zero Trust Alignment
 
-> A structured Microsoft Defender XDR / Defender for Endpoint KQL playbook for threat hunting, investigation, validation, and detection use cases.
-> 
----
+This playbook is structured around Zero Trust principles:
+
+- 🔐 Identity — authentication, access, and session security  
+- 💻 Device — endpoint behavior and telemetry  
+- 🌐 Network — communication and external connections  
+
+Each section provides KQL queries and investigation workflows aligned to these pillars.
 
 ## 🎯 Purpose
 
@@ -20,6 +24,18 @@ It is designed to help defenders:
 - Accelerate triage and response
 - Build repeatable Defender hunting workflows
 
+---
+
+## 🎯 Detection Strategy
+
+Zero Trust detection is built by correlating signals across:
+
+Identity → who is accessing  
+Device → where activity is happening  
+Network → how communication occurs  
+
+High-confidence detections occur when signals align across multiple pillars.
+  
 ---
 
 ## 🚨 Problem Statement
