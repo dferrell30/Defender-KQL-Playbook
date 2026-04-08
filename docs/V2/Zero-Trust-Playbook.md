@@ -1,5 +1,25 @@
 # 🛡️ Zero Trust KQL Playbook (v2.0)
 
+## 📦 Version
+
+**v2.0 — Zero Trust Playbook**
+
+This version introduces a full restructuring of the playbook aligned to Zero Trust principles:
+
+- 🔐 Identity (Microsoft Entra)
+- 💻 Device (Microsoft Defender Endpoint)
+- 🌐 Network (Defender telemetry)
+
+It expands beyond endpoint detection to include identity-based threat detection, token abuse scenarios, and cross-pillar investigation workflows.
+
+---
+
+## 🔙 Previous Version
+
+For the Defender-focused playbook (endpoint-centric):
+
+👉 [View v1.0](../v1.0/defender-playbook.md)
+
 ## 📘 Overview
 
 This playbook provides a Zero Trust–aligned approach to threat detection and investigation using Kusto Query Language (KQL) across Microsoft Defender and Microsoft Entra.
