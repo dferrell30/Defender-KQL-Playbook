@@ -16,7 +16,7 @@ Each section provides KQL queries and investigation workflows aligned to these p
 
 This represents the pilliars of Microsoft Zero Trust. Please consider A.I. as a pilliar of Zero trust moving foward.
 
-![Zero Trust Diagram](./images/ZeroTrustSecurityFrameworkInfographic.png)
+![Zero Trust Diagram](./images/ZeroTrustSecurityFrameworkInfographic)
 
 ## 🎯 Purpose
 
