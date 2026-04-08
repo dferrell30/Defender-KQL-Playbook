@@ -2,6 +2,26 @@
 
 This project is actively being refined and updated based on testing and real-world use.
 
+# 🛡️ KQL Security Playbook
+
+This repository contains a structured KQL playbook for Microsoft Defender and Entra environments.
+
+---
+
+## 📦 Versions
+
+### 🔹 v2.0 — Zero Trust Playbook (Latest)
+- Identity, Device, Network aligned
+- Entra + Defender detection
+  
+👉 [View v2.0](./v2.0/zero-trust-playbook.md)
+
+---
+
+### 🔹 v1.0 — Defender Playbook
+- Endpoint-focused hunting and investigation
+👉 [View v1.0](./v1.0/defender-playbook.md)
+
 ## 🛡️ Zero Trust Alignment
 
 This playbook is structured around Zero Trust principles:
