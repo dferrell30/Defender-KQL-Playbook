@@ -6,6 +6,18 @@ This project is actively being refined and updated based on testing and real-wor
 
 This repository contains a structured KQL playbook for Microsoft Defender and Entra environments.
 
+## 🎯 Purpose
+
+This repository is intended to provide a **practical, repeatable, and structured KQL playbook** for Microsoft Defender hunting and investigation workflows.
+
+It is designed to help defenders:
+
+- Hunt for suspicious activity
+- Validate security controls
+- Investigate known behaviors
+- Accelerate triage and response
+- Build repeatable Defender hunting workflows
+  
 ---
 
 ## 📦 Versions
@@ -39,18 +51,6 @@ This represents the pillars of Microsoft Zero Trust.
 As identity threats evolve, A.I. should also be considered an emerging pillar for detection and response.
 
 ![Zero Trust Diagram](./images/ZeroTrustSecurityFrameworkInfographic.png)
-
-## 🎯 Purpose
-
-This repository is intended to provide a **practical, repeatable, and structured KQL playbook** for Microsoft Defender hunting and investigation workflows.
-
-It is designed to help defenders:
-
-- Hunt for suspicious activity
-- Validate security controls
-- Investigate known behaviors
-- Accelerate triage and response
-- Build repeatable Defender hunting workflows
 
 ---
 
