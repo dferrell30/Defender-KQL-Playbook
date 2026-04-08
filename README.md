@@ -38,7 +38,8 @@ Each section provides KQL queries and investigation workflows aligned to these p
 
 ## 🛡️ Zero Trust Model
 
-This represents the pilliars of Microsoft Zero Trust. Please consider A.I. as a pilliar of Zero trust moving foward.
+This represents the pillars of Microsoft Zero Trust.  
+As identity threats evolve, A.I. should also be considered an emerging pillar for detection and response.
 
 ![Zero Trust Diagram](./images/ZeroTrustSecurityFrameworkInfographic.png)
 
