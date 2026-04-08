@@ -1,4 +1,4 @@
-# 🛡️ Defender & Entra KQL Playbook (v2.0)
+# 🛡️ Zero Trust KQL Playbook (v2.0)
 
 ## 📘 Overview
 
