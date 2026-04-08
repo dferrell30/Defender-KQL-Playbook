@@ -2,7 +2,7 @@
 
 This project is actively being refined and updated based on testing and real-world use.
 
-# 🛡️ KQL Security Playbook
+## 🛡️ KQL Security Playbook
 
 This repository contains a structured KQL playbook for Microsoft Defender and Entra environments.
 
