@@ -12,6 +12,10 @@ This playbook is structured around Zero Trust principles:
 
 Each section provides KQL queries and investigation workflows aligned to these pillars.
 
+## 🛡️ Zero Trust Model
+
+![Zero Trust Diagram](./images/zero-trust-diagram.png)
+
 ## 🎯 Purpose
 
 This repository is intended to provide a **practical, repeatable, and structured KQL playbook** for Microsoft Defender hunting and investigation workflows.
