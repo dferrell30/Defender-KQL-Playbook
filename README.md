@@ -16,6 +16,10 @@ This repository contains a structured KQL playbook for Microsoft Defender and En
   
 👉 [View v2.0](./v2.0/zero-trust-playbook.md)
 
+<p align="center">
+  <img src="./images/zero-trust-framework.png" width="700">
+</p>
+
 ---
 
 ### 🔹 v1.0 — Defender Playbook
