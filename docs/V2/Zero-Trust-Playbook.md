@@ -29,6 +29,35 @@ This playbook is structured around core Zero Trust pillars:
 
 > Zero Trust detection requires correlating signals across identity, device, and network.
 
+# 🔐 Identity (Entra)
+
+## 🔐 Identity Overview
+
+Identity telemetry provides visibility into authentication behavior, session activity, and access patterns.
+
+This includes:
+
+- sign-in activity  
+- MFA challenges  
+- token usage  
+- risk signals  
+
+---
+
+## 📊 Identity Core Tables
+
+### SigninLogs
+Tracks authentication activity including:
+
+- IP address  
+- location  
+- client app  
+- risk level  
+
+---
+
+## 🔍 Identity Queries
+
 ## 📌 Table of Contents
 
 - [📘 Overview](#-overview)
