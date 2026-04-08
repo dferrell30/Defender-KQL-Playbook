@@ -12,6 +12,8 @@
 
 - [🚀 How to Use This Playbook](#-how-to-use-this-playbook)
 
+- [🔐 Identity Investigation Workflows](#-identity-investigation-workflows)
+
 - [🔎 Investigation Workflows](#-investigation-workflows)
   - [Suspicious PowerShell Execution](#-investigation-workflow-suspicious-powershell-execution)
   - [Defender Tampering / Defense Evasion](#-investigation-workflow-defender-tampering--defense-evasion)
