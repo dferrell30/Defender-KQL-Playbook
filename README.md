@@ -58,9 +58,9 @@ As identity threats evolve, A.I. should also be considered an emerging pillar fo
 
 Zero Trust detection is built by correlating signals across:
 
-Identity → who is accessing  
-Device → where activity is happening  
-Network → how communication occurs  
+- 🔐 Identity → who is accessing  
+- 💻 Device → where activity is happening  
+- 🌐 Network → how communication occurs  
 
 High-confidence detections occur when signals align across multiple pillars.
   
