@@ -243,9 +243,7 @@ This section of the playbook contains KQL queries used for onboarding, threat hu
 
 ## Devices Reporting
 
-<img src="../images/DevicesReportingOutput.png" width="800">
-
-
+![Device Reporting](https://raw.githubusercontent.com/dferrell30/Defender-KQL-Playbook/main/images/DevicesReportingOutput.png)
 
 ### 📸 Example Output
 
