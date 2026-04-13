@@ -284,7 +284,7 @@ DeviceTvmSecureConfigurationAssessment
 
 Below you can see if any onboarded systems are in distress or potentially have a third-party anti-virus installed.
 
-![DeviceHealthOutput](../images/DeviceHealthOutput.png)
+![DeviceHealthOutput](images/DeviceHealthOutput.png)
 
 ---
 
