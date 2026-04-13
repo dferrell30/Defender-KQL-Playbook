@@ -286,7 +286,9 @@ DeviceTvmSecureConfigurationAssessment
 
 Below you can see if any onboarded systems are in distress or potentially have a third-party anti-virus installed.
 
-![DeviceHealthOutput](images/DeviceHealthOutput.png)
+### 📸 Example Output
+
+![Device Health](https://raw.githubusercontent.com/dferrell30/Defender-KQL-Playbook/main/images/DeviceHealthOutput.png)
 
 ---
 
