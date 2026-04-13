@@ -245,7 +245,7 @@ This section of the playbook contains KQL queries used for onboarding, threat hu
 
 ### 📸 Example Output
 
-<img src="images/DevicesReportingOutput.png" width="800">
+<img src="./images/DevicesReportingOutput.png" width="800">
 
 ```kusto
 DeviceInfo
