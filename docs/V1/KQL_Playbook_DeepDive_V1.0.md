@@ -344,7 +344,7 @@ DeviceInfo
 | summarize LastSeen = max(Timestamp) by DeviceName
 | where LastSeen < ago(7d)
 ```
-![Devices Reporting](../images/StaleDevices.png)
+![Stale Devices](https://raw.githubusercontent.com/dferrell30/Defender-KQL-Playbook/main/images/StaleDevices.png)
 
 ### What It Does
 
