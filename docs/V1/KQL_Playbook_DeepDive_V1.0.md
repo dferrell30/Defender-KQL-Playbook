@@ -237,6 +237,8 @@ DeviceProcessEvents
 
 🔝 [Back to Table of Contents](#-table-of-contents)
 
+## 🔗 Cross-Layer Correlation
+
  # 🔍 KQL-Queries
 
 This section of the playbook contains KQL queries used for onboarding, threat hunting, and validation.
