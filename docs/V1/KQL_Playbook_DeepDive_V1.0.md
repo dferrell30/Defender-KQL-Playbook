@@ -2316,3 +2316,5 @@ The goal is not just to query data —
 it is to **understand what the data is telling you**.
 
 ## 🧪 Endpoint Validation Checks
+
+## 🎯 From Hunt to Detection
