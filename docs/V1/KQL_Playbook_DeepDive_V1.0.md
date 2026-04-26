@@ -2309,3 +2309,4 @@ but only when used with structure, context, and intent.
 The goal is not just to query data —  
 it is to **understand what the data is telling you**.
 
+## 🧪 Endpoint Validation Checks
