@@ -2,6 +2,8 @@
 
 ### 🔍 KQL Playbook Deep Dive Version 1.0
 
+## 💻 Endpoint Investigation Workflow
+
 ## 📌 Table of Contents
 
 - [🧠 KQL Foundations](#-kql-foundations)
