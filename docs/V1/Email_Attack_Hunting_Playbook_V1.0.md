@@ -22,6 +22,8 @@ It focuses on detecting **patterns**, not just individual emails, enabling analy
 
 ---
 
+## 📧 Email Investigation Workflow
+
 ## Scope
 
 Covers:
