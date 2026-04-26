@@ -239,6 +239,8 @@ DeviceProcessEvents
 
 ## 🔗 Cross-Layer Correlation
 
+## 🔁 Entity Pivoting Strategy
+
  # 🔍 KQL-Queries
 
 This section of the playbook contains KQL queries used for onboarding, threat hunting, and validation.
@@ -1695,6 +1697,8 @@ Steps:
 🔝 [Back to Table of Contents](#-table-of-contents)
 
 ---
+
+## 🧪 Validation Checks
 
 # 🔥 Final Section Summary
 
