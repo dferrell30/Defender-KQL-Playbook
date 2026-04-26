@@ -297,6 +297,8 @@ EmailEvents
 * Repeated infrastructure?
 * Ongoing campaign?
 
+## 🔁 Email Investigation Pivots
+
 ---
 
 # Remediation Playbooks
@@ -378,3 +380,4 @@ Escalate when:
 * Sentinel analytics rule conversion
 * Automated response workflows
 
+## 🧪 Email Validation Checks
