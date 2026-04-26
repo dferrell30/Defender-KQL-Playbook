@@ -4,6 +4,8 @@
 
 ## 💻 Endpoint Investigation Workflow
 
+## 🔁 Endpoint Investigation Pivots
+
 ## 📌 Table of Contents
 
 - [🧠 KQL Foundations](#-kql-foundations)
