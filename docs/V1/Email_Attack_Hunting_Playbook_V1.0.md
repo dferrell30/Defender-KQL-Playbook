@@ -157,13 +157,17 @@ EmailEvents
 ```kusto
 EmailEvents
 | where Timestamp > ago(7d)
-| where DeliveryAction =~ "Delivered"
-| project NetworkMessageId, RecipientEmailAddress, Subject, SenderFromAddress
+| project NetworkMessageId, RecipientEmailAddress, Subject, SenderFromAddress, DeliveryAction
 | join kind=inner (
     UrlClickEvents
-    | project NetworkMessageId, AccountUpn, Url, ClickTime=Timestamp
+    | project NetworkMessageId, AccountUpn, Url, ActionType, ClickTime=Timestamp
 ) on NetworkMessageId
+| project ClickTime, AccountUpn, RecipientEmailAddress, Subject, SenderFromAddress, DeliveryAction, Url, ActionType, NetworkMessageId
+| sort by ClickTime desc
 ```
+### Simulation Note
+
+In phishing simulations, `UrlClickEvents` may show user interaction even when `EmailUrlInfo` does not return URL details. In that case, use `UrlClickEvents` as the primary source for confirming interaction and pivot from `AccountUpn`, `Url`, and `NetworkMessageId`.
 
 ### Why it matters
 
@@ -174,6 +178,20 @@ This confirms **user interaction with a potentially malicious email**.
 * AccountUpn → sign-in logs
 * URL → campaign infrastructure
 * Device activity → payload execution
+
+## 🔁 Email Investigation Pivots
+
+When URL metadata is missing or incomplete, pivot from the telemetry that is available.
+
+Primary pivots:
+
+* NetworkMessageId → message scope
+* AccountUpn → identity activity
+* Url → clicked infrastructure
+* RecipientEmailAddress → targeted user
+* SenderFromAddress / SenderFromDomain → campaign source
+
+If `EmailUrlInfo` does not return results, check `UrlClickEvents` directly to confirm interaction.
 
 ### Remediation
 
