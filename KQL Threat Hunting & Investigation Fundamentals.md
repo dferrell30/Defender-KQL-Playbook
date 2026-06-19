@@ -16,6 +16,52 @@
 
   * Microsoft Defender XDR
   * Microsoft Sentinel
+    
+---
+
+# Table of Contents
+
+- [Purpose](#purpose)
+
+- [The Threat Hunting Mindset](#the-threat-hunting-mindset)
+
+- [Investigation Model](#investigation-model)
+  - [Hunt](#hunt)
+  - [Pivot](#pivot)
+  - [Investigate](#investigate)
+  - [Validate](#validate)
+  - [Decide](#decide)
+
+- [Entity-Based Investigation Strategy](#entity-based-investigation-strategy)
+  - [Common Investigation Entities](#common-investigation-entities)
+
+- [Cross-Layer Investigation](#cross-layer-investigation)
+
+- [KQL Fundamentals for Security Investigations](#kql-fundamentals-for-security-investigations)
+
+- [Time Scoping with ago()](#time-scoping-with-ago)
+  - [Purpose](#purpose)
+
+- [Filtering with where](#filtering-with-where)
+
+- [Selecting Relevant Fields with project](#selecting-relevant-fields-with-project)
+
+- [Creating New Data with extend](#creating-new-data-with-extend)
+
+- [Sorting Results with sort and order by](#sorting-results-with-sort-and-order-by)
+
+- [Limiting Results with take](#limiting-results-with-take)
+
+- [Searching with has, contains, and startswith](#searching-with-has-contains-and-startswith)
+
+- [Advanced KQL for Detection Engineering](#advanced-kql-for-detection-engineering)
+
+- [Aggregation with summarize](#aggregation-with-summarize)
+
+- [Counting vs Distinct Counting](#counting-vs-distinct-counting)
+
+- [Creating Context with make_set()](#creating-context-with-make_set)
+
 
 ---
 
@@ -27,7 +73,7 @@ The objective is not to memorize queries. The objective is to understand how to 
 
 KQL is not simply a search language.
 
-It is an investigation language.
+It is an investigation language. 
 
 A successful investigation answers:
 
