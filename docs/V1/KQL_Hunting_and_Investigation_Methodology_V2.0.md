@@ -1,4 +1,4 @@
-KQL Playbook Deep Dive V1.0
+KQL_Hunting_and_Investigation_Methodology_V2.0.md
 
 ⸻
 
