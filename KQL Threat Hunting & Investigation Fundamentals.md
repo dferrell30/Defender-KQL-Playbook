@@ -271,6 +271,8 @@ Network Communication
 
 Understanding this relationship is what transforms hunting into detection engineering.
 
+⬆️ [Return to Table of Contents](#table-of-contents)
+
 ---
 
 # KQL Fundamentals for Security Investigations
@@ -587,6 +589,8 @@ Can this become a reliable detection?
 ```
 
 The best detection engineers start with simple observations and gradually build confidence through data.
+
+⬆️ [Return to Table of Contents](#table-of-contents)
 
 ---
 
@@ -1135,87 +1139,83 @@ Hunt → Validate → Tune → Detect → Measure → Improve
 
 ⚠️ Platform, Telemetry, and Licensing Considerations
 
-The KQL examples and investigation methodologies in this playbook are designed around Microsoft Defender XDR telemetry; however, data availability may vary based on licensing, product configuration, enabled capabilities, operating systems, and telemetry retention.
+The KQL examples and investigation methodologies in this playbook are designed around Microsoft Defender XDR email telemetry. However, data availability may vary based on Microsoft Defender for Office 365 licensing, Exchange Online configuration, enabled security features, data retention, and telemetry availability.
 
-A successful query depends on the required telemetry being collected and available within the environment.
+A successful query depends on the required email telemetry being collected and available within the environment.
 
-Microsoft Defender for Endpoint Licensing Considerations
+Microsoft Defender for Office 365 Licensing Considerations
 
-Microsoft Defender for Endpoint capabilities differ between licensing tiers.
+Microsoft Defender for Office 365 capabilities differ between licensing tiers.
 
-Defender for Endpoint Plan 1 (P1)
+Defender for Office 365 Plan 1 (P1)
 
-Typically provides foundational endpoint protection capabilities including:
+Provides foundational email protection capabilities including:
 
-Next-generation protection
-Attack Surface Reduction (ASR) rules
-Device control (platform dependent)
-Basic security recommendations
-Core endpoint telemetry availability
+Safe Links protection for email and collaboration workloads.
+Safe Attachments protection for email messages.
+Anti-phishing protection.
+Anti-spam and anti-malware filtering.
+Real-time URL scanning and time-of-click protection.
+Security reports and investigation capabilities.
 
-Limitations may include reduced access to advanced investigation and detection capabilities compared with higher licensing tiers.
+Limitations may include reduced access to advanced investigation, hunting, simulation, and automated response capabilities compared with higher licensing tiers.
 
-Defender for Endpoint Plan 2 (P2)
+Defender for Office 365 Plan 2 (P2)
 
-Provides advanced detection and response capabilities including:
+Provides advanced email detection, investigation, and response capabilities including:
 
-Endpoint Detection and Response (EDR)
-Advanced Hunting
-Automated Investigation and Response (AIR)
-Threat and Vulnerability Management (TVM)
-Advanced threat analytics and investigation workflows
+Threat Explorer and Real-Time Detections.
+Advanced hunting through Microsoft Defender XDR.
+Attack Simulation Training.
+Automated Investigation and Response (AIR).
+Advanced campaign views and email threat analysis.
+Enhanced phishing investigation workflows.
+Additional threat intelligence and reporting capabilities.
 
-Many advanced KQL hunting scenarios are designed around telemetry commonly associated with Defender for Endpoint Plan 2 capabilities.
+Many advanced KQL hunting and custom detection scenarios are designed around telemetry commonly associated with Defender for Office 365 Plan 2 and Microsoft Defender XDR.
 
-Microsoft Defender for Business
+Exchange Online and Microsoft Defender XDR Telemetry Availability
 
-Microsoft Defender for Business provides enterprise-grade endpoint protection designed for small and medium-sized organizations.
-
-Capabilities may include:
-
-Endpoint protection
-Endpoint Detection and Response
-Threat and Vulnerability Management
-Automated Investigation and Response
-Advanced Hunting capabilities (feature availability may vary by service evolution and licensing terms)
-
-Organizations should validate available tables and telemetry within their tenant before implementing advanced hunting or custom detections.
-
-Microsoft Defender XDR Service Availability
-
-The presence of a table does not necessarily indicate complete coverage.
+The presence of a KQL table depends on the availability of the required email telemetry.
 
 Examples:
 
-DeviceProcessEvents requires endpoint telemetry.
-DeviceNetworkEvents requires network telemetry collection.
-EmailEvents requires Microsoft Defender for Office 365 email telemetry.
-UrlClickEvents depends on Safe Links and applicable email protections.
-Identity-related tables depend on Microsoft Entra ID and associated telemetry.
-Cloud application telemetry requires applicable Microsoft Defender for Cloud Apps capabilities.
+EmailEvents requires Exchange Online email telemetry integrated with Microsoft Defender for Office 365.
+EmailUrlInfo requires messages containing URL telemetry and applicable inspection capabilities.
+EmailAttachmentInfo requires attachment telemetry from analyzed email messages.
+UrlClickEvents depends on Safe Links protection and available click telemetry.
+EmailPostDeliveryEvents depends on post-delivery actions such as Soft Delete, ZAP (Zero-hour Auto Purge), or administrator remediation actions.
+AlertInfo and AlertEvidence depend on available Microsoft Defender XDR alerts and correlated security signals.
+Identity-related pivots depend on Microsoft Entra ID and associated telemetry.
+Device-related pivots require applicable Microsoft Defender for Endpoint telemetry.
 Data Retention and Historical Hunting
 
-The ability to perform historical investigations depends on retention settings and licensing.
+The ability to perform historical email investigations depends on retention settings, licensing, and available telemetry.
 
 Examples:
 
-A 90-day hunting query will not produce useful results if the environment only retains 30 days of relevant telemetry.
-Long-term campaign analysis may require additional retention capabilities.
+A 90-day campaign hunting query will not provide meaningful results if the required email telemetry is retained for a shorter period.
+Long-term trend analysis may require additional data retention capabilities.
+Historical investigations should be designed around the organization’s available retention period.
 
-Always confirm the available retention period before designing scheduled hunts or detections.
+Always confirm the available retention period before designing scheduled hunts, custom detections, or long-term campaign analysis.
 
 Validation Before Operational Use
 
 Before implementing a hunting query as a production detection:
 
-Validate that required tables exist.
-Confirm expected telemetry is being collected.
-Understand product licensing limitations.
-Test queries against known-good and known-bad scenarios.
-Review false positives and environmental noise.
-Confirm alerting and response workflows.
+Validate that required email tables and fields are available.
+Confirm Microsoft Defender for Office 365 features are enabled.
+Understand licensing and feature availability.
+Test queries against known-good and known-bad email scenarios.
+Tune thresholds, trusted senders, and identity exclusions.
+Review false-positive impact.
+Validate alerting and response workflows before enabling automated actions.
 
-A successful detection is not determined only by KQL logic; it depends on the quality and availability of the underlying telemetry.
+A successful email detection is not determined only by KQL logic; it depends on the quality, completeness, and availability of the underlying email telemetry.
 
+---
 
+⬆️ [Return to Table of Contents](#table-of-contents)
 
+---
