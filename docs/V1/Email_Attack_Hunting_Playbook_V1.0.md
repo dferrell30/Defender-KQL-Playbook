@@ -1,401 +1,337 @@
-# Email Attack Hunting Playbook
+# 📧 Email Threat Hunting & Detection Engineering Playbook
 
-## Version
-
-* Version: 1.0
-* Last Updated: 2026-04-21
-* Data Sources: Microsoft Defender XDR, Microsoft Sentinel
-
----
-
-## Purpose
-
-This playbook provides practical KQL-based techniques to identify, investigate, and remediate email-based attacks.
-
-It focuses on detecting **patterns**, not just individual emails, enabling analysts to:
-
-* Identify phishing campaigns
-* Detect malicious attachments and URLs
-* Track user interaction (clicks, execution)
-* Pivot across identity and endpoint data
-* Execute effective remediation
+![Version](https://img.shields.io/badge/Version-2.0-blue)
+![KQL](https://img.shields.io/badge/Language-KQL-purple)
+![Platform](https://img.shields.io/badge/Platform-Microsoft_Defender_XDR-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+![Status](https://img.shields.io/badge/Status-Community_Research-orange)
+![MITRE](https://img.shields.io/badge/MITRE-T1566_Phishing-red)
 
 ---
 
-## 📧 Email Investigation Workflow
+## Overview
 
-## Scope
+This repository contains practical KQL-based hunting workflows and detection engineering examples designed for Microsoft Defender XDR and Microsoft Sentinel.
 
-Covers:
+The playbook focuses on identifying **attacker behavior patterns**, not simply individual indicators of compromise (IOCs).
 
-* Phishing campaigns (credential harvesting)
-* Malware delivery via attachments
-* URL-based attacks
-* Internal impersonation (BEC-style)
-* Spray-and-pray email attacks
+Coverage includes:
 
----
-
-## Core Tables
-
-| Table               | Description                        |
-| ------------------- | ---------------------------------- |
-| EmailEvents         | Email metadata and delivery status |
-| EmailUrlInfo        | URLs within emails                 |
-| EmailAttachmentInfo | Attachment metadata                |
-| UrlClickEvents      | User click telemetry               |
-
-Optional pivots:
-
-* IdentityLogonEvents / AADSignInEvents
-* DeviceProcessEvents
-* SecurityAlert / AlertEvidence
+- Phishing campaigns
+- Business Email Compromise (BEC)
+- Identity impersonation
+- Malicious attachments
+- URL-based attacks
+- User interaction telemetry
+- Campaign correlation
+- Cross-domain investigation pivots
 
 ---
 
-## Attack Pattern Methodology
+# ⚠️ Important Disclaimer
+
+These KQL queries are provided for:
+
+- Security research
+- Threat hunting
+- Detection engineering
+- Lab validation
+- Environment-specific tuning
+
+They are **not intended to be deployed as production detections without testing**.
+
+Organizations should:
+
+- Validate data availability
+- Tune thresholds
+- Add organization-specific exclusions
+- Validate false positives
+- Review operational impact
+
+before enabling automated actions such as:
+
+- Alert generation
+- Automated investigation
+- Message soft delete
+- Automated remediation
+
+These examples are intended to complement—not replace—Microsoft Defender for Office 365 protections, including:
+
+- Anti-phishing policies
+- Mailbox intelligence
+- User impersonation protection
+- Domain impersonation protection
+- SPF/DKIM/DMARC validation
+
+---
+
+# 📚 Table of Contents
+
+- [Overview](#overview)
+- [Data Sources](#data-sources)
+- [Email Investigation Methodology](#email-investigation-methodology)
+- [Core Hunting Queries](#core-hunting-queries)
+- [BEC Detection Engineering Framework](#bec-detection-engineering-framework)
+- [Investigation Pivots](#investigation-pivots)
+- [Remediation Workflows](#remediation-workflows)
+- [Detection Tuning Guidance](#detection-tuning-guidance)
+- [MITRE ATT&CK Mapping](#mitre-attck-mapping)
+- [Future Enhancements](#future-enhancements)
+
+---
+
+# 📊 Data Sources
+
+| Source | Purpose |
+|---|---|
+| EmailEvents | Email metadata, delivery, sender analysis |
+| EmailUrlInfo | URL extraction and campaign tracking |
+| EmailAttachmentInfo | Attachment investigation |
+| UrlClickEvents | User interaction telemetry |
+| IdentityLogonEvents | Identity investigation pivots |
+| AADSignInEvents | Sign-in analysis |
+| DeviceProcessEvents | Payload execution investigation |
+| SecurityAlert | Existing detection correlation |
+
+---
+
+# 🧭 Email Investigation Methodology
 
 Every investigation should answer:
 
-1. **Is this a campaign?**
-2. **Was it delivered?**
-3. **Did a user interact?**
-4. **What is the blast radius?**
+1. Is this part of a larger campaign?
+2. Was the message delivered?
+3. Did a user interact with it?
+4. Did execution or credential compromise occur?
+5. What is the blast radius?
+6. Is additional remediation required?
 
 ---
 
-# Hunting Queries and Workflows
+# 🔍 Core Hunting Queries
+
+## Campaign Analysis
+
+- Sender domain volume spikes
+- One sender targeting many recipients
+- Subject reuse analysis
+- Spray-and-pray detection
+
+## Payload Investigation
+
+- URL-based campaigns
+- Malicious attachment campaigns
+- User click correlation
 
 ---
 
-## 1. Sender Domain Volume Spikes
+# 🛡️ BEC Detection Engineering Framework
 
-**Type:** Hunting
-**Use Case:** Campaign Detection
+Modern BEC attacks frequently rely on identity abuse rather than traditional malware.
 
-```kusto
-EmailEvents
-| where Timestamp > ago(7d)
-| summarize MsgCount=count(), Recipients=dcount(RecipientEmailAddress)
-    by bin(Timestamp, 1h), SenderFromDomain
-| where MsgCount > 20
-| sort by MsgCount desc
+This playbook includes three detection patterns:
+
+---
+
+## BEC-01: Consumer Account Identity Impersonation
+
+### Purpose
+
+Detects consumer email accounts attempting to impersonate:
+
+- Employees
+- Executives
+- Finance teams
+- HR
+- IT administration
+- Shared business functions
+
+### Methodology
+
+```
+Consumer Email Domain
+           +
+Normalized Sender Identity
+           +
+Protected Identity Patterns
+           -
+Known Safe Exceptions
+           =
+Potential BEC
 ```
 
-### Why it matters
+Recommended Lifecycle:
 
-Phishing campaigns often generate **bursty traffic patterns**.
-
-### Pivot
-
-* SenderFromDomain → all messages
-* NetworkMessageId → URLs + attachments
-* DeliveryAction → was it delivered?
-
-### Remediation
-
-* Block domain
-* Purge delivered messages
-* Investigate user clicks
-
----
-
-## 2. One Sender Targeting Many Users
-
-```kusto
-EmailEvents
-| where Timestamp > ago(7d)
-| summarize
-    TotalMessages=count(),
-    TargetedUsers=dcount(RecipientEmailAddress)
-    by SenderFromAddress, SenderFromDomain
-| where TargetedUsers >= 10
-| sort by TargetedUsers desc
+```
+Hunting
+   ↓
+Alert
+   ↓
+Tuned Detection
+   ↓
+Optional Automated Response
 ```
 
-### Pivot
-
-* Subjects used
-* URL reuse
-* Departments targeted
-
-### Remediation
-
-* Block sender/domain
-* Notify impacted users
-* Investigate clicks
-
 ---
 
-## 3. Reused Subject Campaigns
+## BEC-02: Display Name Impersonation
 
-```kusto
-EmailEvents
-| where Timestamp > ago(7d)
-| summarize Recipients=dcount(RecipientEmailAddress) by Subject
-| where Recipients >= 10
-| sort by Recipients desc
-```
+### Purpose
 
-### Pivot
+Detects emails where:
 
-* All senders using subject
-* URLs tied to subject
-* Delivery status
-
-### Remediation
-
-* Purge messages
-* Create temporary detection rule
-
----
-
-## 4. Delivered Emails with Click Activity
-
-**High Priority Detection**
-
-```kusto
-EmailEvents
-| where Timestamp > ago(7d)
-| project NetworkMessageId, RecipientEmailAddress, Subject, SenderFromAddress, DeliveryAction
-| join kind=inner (
-    UrlClickEvents
-    | project NetworkMessageId, AccountUpn, Url, ActionType, ClickTime=Timestamp
-) on NetworkMessageId
-| project ClickTime, AccountUpn, RecipientEmailAddress, Subject, SenderFromAddress, DeliveryAction, Url, ActionType, NetworkMessageId
-| sort by ClickTime desc
-```
-### Simulation Note
-
-In phishing simulations, `UrlClickEvents` may show user interaction even when `EmailUrlInfo` does not return URL details. In that case, use `UrlClickEvents` as the primary source for confirming interaction and pivot from `AccountUpn`, `Url`, and `NetworkMessageId`.
-
-### Why it matters
-
-This confirms **user interaction with a potentially malicious email**.
-
-### Pivot
-
-* AccountUpn → sign-in logs
-* URL → campaign infrastructure
-* Device activity → payload execution
-
-## 🔁 Email Investigation Pivots
-
-When URL metadata is missing or incomplete, pivot from the telemetry that is available.
-
-Primary pivots:
-
-* NetworkMessageId → message scope
-* AccountUpn → identity activity
-* Url → clicked infrastructure
-* RecipientEmailAddress → targeted user
-* SenderFromAddress / SenderFromDomain → campaign source
-
-If `EmailUrlInfo` does not return results, check `UrlClickEvents` directly to confirm interaction.
-
-### Remediation
-
-* Reset password
-* Revoke sessions
-* Investigate sign-ins
-* Notify user
-
----
-
-## 5. Malicious Attachment Campaigns
-
-```kusto
-EmailAttachmentInfo
-| where Timestamp > ago(14d)
-| summarize Recipients=dcount(RecipientEmailAddress) by SHA256
-| where Recipients >= 5
-| sort by Recipients desc
-```
-
-### Pivot
-
-* SHA256 → DeviceProcessEvents
-* FileName variations
-* Message distribution
-
-### Remediation
-
-* Block hash
-* Isolate impacted devices
-* Hunt execution activity
-
----
-
-## 6. URL-Based Campaign Detection
-
-```kusto
-EmailUrlInfo
-| where Timestamp > ago(14d)
-| summarize Messages=dcount(NetworkMessageId) by UrlDomain
-| sort by Messages desc
-```
-
-### Pivot
-
-* UrlDomain → all messages
-* UrlClickEvents → user interaction
-
-### Remediation
-
-* Block domain
-* Identify clickers
-* Initiate identity review
-
----
-
-## 7. Internal Domain Spoofing
-
-```kusto
-let MyDomain = "contoso.com";
-EmailEvents
-| where SenderFromDomain =~ MyDomain
-| where SenderFromAddress !endswith MyDomain
-```
-
-### Remediation
-
-* Tune SPF/DKIM/DMARC
-* Block spoof patterns
-* Alert users
-
----
-
-## 8. Spray-and-Pray Detection
-
-```kusto
-EmailEvents
-| summarize Domains=dcount(SenderFromDomain) by RecipientEmailAddress
-| where Domains >= 10
-```
-
-### Remediation
-
-* Focus on high-risk users
-* Increase monitoring
-* Provide awareness
-
----
-
-# Pivot Workflow (Critical)
-
-## Step 1: Start with Message
-
-* NetworkMessageId
-* Sender
-* Subject
-
-## Step 2: Expand Scope
-
-* All recipients
-* Delivery status
-
-## Step 3: Investigate Payload
-
-* URLs → EmailUrlInfo
-* Attachments → EmailAttachmentInfo
-
-## Step 4: Confirm Interaction
-
-* UrlClickEvents
-* Device activity
-
-## Step 5: Identity Validation
-
-* Sign-in logs
-* Token anomalies
-
-## Step 6: Determine Impact
-
-* Multiple users?
-* Repeated infrastructure?
-* Ongoing campaign?
-
-## 🔁 Email Investigation Pivots
-
----
-
-# Remediation Playbooks
-
-## Credential Phishing
-
-Actions:
-
-1. Identify recipients and clickers
-2. Reset passwords
-3. Revoke sessions
-4. Review sign-in activity
-5. Block domains/URLs
-6. Purge emails
-
----
-
-## Malware Attachments
-
-Actions:
-
-1. Identify recipients
-2. Block file hash
-3. Investigate execution
-4. Isolate devices
-5. Hunt persistence
-
----
-
-## Business Email Compromise (BEC)
-
-Actions:
-
-1. Identify targeted users
-2. Check for replies/actions
-3. Alert finance/HR
-4. Strengthen impersonation controls
-
----
-
-## Tuning Guidance
-
-Adjust thresholds based on:
-
-* Organization size
-* Email volume
-* Trusted senders
+The display name claims to be a trusted identity, but the actual sender does not align with expected naming patterns.
 
 Example:
 
-```kusto
-| where SenderFromDomain !endswith "contoso.com"
-| where DeliveryAction =~ "Delivered"
+```
+Display Name:
+John Smith
+
+Actual Sender:
+billing-update123@gmail.com
+```
+
+Methodology:
+
+```
+Display Name Matches Protected Identity
+                     +
+Actual Sender Does Not Match Expected Pattern
+                     =
+Potential BEC Display Name Impersonation
 ```
 
 ---
 
-## Escalation Criteria
+## BEC-03: Corporate Lookalike Domain Impersonation
 
-Escalate when:
+### Purpose
 
-* Multiple users clicked
-* High-value users targeted
-* Malware executed
-* Suspicious sign-ins detected
+Detects domains attempting to imitate an organization.
+
+Examples:
+
+```
+john.smith@contoso-security.com
+ceo@contoso-support.com
+payroll@contoso.co
+```
+
+Methodology:
+
+```
+Domain Resembles Organization
+               +
+Domain Not Trusted
+               +
+Protected Identity Present
+               =
+Potential Brand Impersonation
+```
 
 ---
 
-## Related Documentation
+# 🔄 Investigation Pivots
 
-* KQL Playbook Deep Dive (Core methodology)
+Useful pivots include:
+
+- NetworkMessageId → Message scope
+- SenderFromAddress → Campaign source
+- SenderFromDomain → Infrastructure
+- RecipientEmailAddress → Target analysis
+- URL → Infrastructure and click activity
+- SHA256 → Endpoint execution
+- AccountUpn → Identity impact
 
 ---
 
-## Future Enhancements
+# 🛠️ Remediation Workflows
 
-* QR phishing detection
-* Callback phishing patterns
-* Sentinel analytics rule conversion
-* Automated response workflows
+## Credential Phishing
 
-## 🧪 Email Validation Checks
+- Reset credentials
+- Revoke active sessions
+- Investigate sign-ins
+- Block malicious infrastructure
+
+## Malware Delivery
+
+- Block file hashes
+- Isolate impacted devices
+- Hunt persistence mechanisms
+
+## Business Email Compromise
+
+- Identify targeted users
+- Review replies and user actions
+- Notify impacted business units
+- Review impersonation controls
+
+---
+
+# 🎯 Detection Tuning Guidance
+
+Every environment is unique.
+
+Before promoting detections:
+
+- Run in hunting mode
+- Convert to alert-only detections
+- Monitor false positives
+- Add trusted senders and exclusions
+- Validate identity patterns
+
+High confidence detections may be candidates for:
+
+- Soft delete
+- Automated investigation
+- Custom detection actions
+
+---
+
+# 🗺️ MITRE ATT&CK Mapping
+
+| Technique | Description |
+|---|---|
+| T1566 | Phishing |
+| T1585 | Establish Accounts |
+| T1586 | Compromise Accounts |
+| T1589 | Gather Victim Identity Information |
+| T1036 | Masquerading |
+
+---
+
+# 🚀 Future Enhancements
+
+Planned areas of research:
+
+- QR phishing (Quishing)
+- Callback phishing campaigns
+- OAuth consent phishing
+- First-seen sender analysis
+- Mailbox intelligence correlation
+- SPF/DKIM/DMARC anomaly detection
+- Automated Defender XDR custom detection conversion
+- Microsoft Sentinel analytics rules
+
+---
+
+# 🤝 Community Contribution
+
+Security detection engineering improves through collaboration.
+
+Feel free to:
+
+- Adapt these queries
+- Improve detection logic
+- Submit enhancements
+- Share additional hunting techniques
+
+---
+
+## Author Notes
+
+This playbook was developed from practical threat hunting and detection engineering scenarios focused on improving visibility into modern email threats.
+
+The goal is to provide reusable hunting methodologies that can be adapted to individual organizational requirements.
